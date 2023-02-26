@@ -41,7 +41,7 @@ const Navbar = (props: Props) => {
   return (
     <div className="border-b border-gray-200">
       <div className="max-w-6xl mx-auto px-4">
-        <nav className="sticky-nav flex flex-row items-center md:my-4">
+        <nav className="sticky-nav flex flex-row justify-between items-center md:my-4">
         <div className="">
         <svg id="svgLogo" xmlns="http://www.w3.org/2000/svg" width="38px" height="38px" viewBox="-10 0 80 65">
             <path className="bottomArrow" d="M32.59 36.14 32.59 32 29.12 32 25.42 32 25.42 36.32 25.42 42.4 25.42 54.52 23.33 53.31 14.87 48.42 6.28 43.48 6.28 50.47 13.52 54.65 20.93 58.92 21.04 58.99 29.36 63.8 36.58 59.62 36.78 59.51 45.18 54.65 51.95 50.74 51.95 43.33 32.59 54.51 32.59 42.34 32.59 36.14"/>
@@ -59,7 +59,7 @@ const Navbar = (props: Props) => {
           <div className="flex items-center space-x-2">
             <Link href='/login'>
                 <Button primary>
-                  <p className="line-clamp-1">Login</p>
+                  <p className="font-semibold line-clamp-1">Login</p>
                 </Button>
             </Link>
           </div>

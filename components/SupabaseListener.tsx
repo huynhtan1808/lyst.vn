@@ -24,7 +24,7 @@ export default function SupabaseListener({
         // server and client are out of sync
         // reload the page to fetch fresh server data
         // https://beta.nextjs.org/docs/data-fetching/mutating
-        router.push('/profile');
+        router.refresh();
       }
     });
 

@@ -13,6 +13,7 @@ export interface Database {
         Row: {
           id: string
           created_at: string
+          title: string
           content: string
           user_id: string
         }
@@ -25,6 +26,7 @@ export interface Database {
         Update: {
           id?: string
           created_at?: string
+          title?: string
           content?: string
           user_id?: string
         }

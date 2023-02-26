@@ -22,7 +22,7 @@ const AuthForm = ({
 }: Props) => {
 
   return (
-    <div className="w-full max-w-md space-y-8">
+    <div className="w-full max-w-xs text-center space-y-8 mx-auto">
       <div className="group transition-all duration-150 space-y-3">
       <h1 className="text-xl font-bold">Sign In</h1>
           <button

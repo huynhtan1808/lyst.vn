@@ -1,8 +1,10 @@
-import supabase from '../../../lib/supabase-browser'
+import { supabaseClient } from '../../../lib/supabase-browser'
 import { notFound } from 'next/navigation'
 
 export const revalidate = 60
 export const dynamic = 'force-static';
+
+const supabase = supabaseClient();
 
 export async function generateStaticParams() {
   const { data: posts } = await supabase.from('posts').select('slug')

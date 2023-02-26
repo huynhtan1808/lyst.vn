@@ -1,18 +1,18 @@
 import React from "react";
 import Profile from "@/components/Profile";
-import createServerComponentSupabaseClient from "@/lib/supabase-server";
+import { createServerClient } from "@/lib/supabase-server";
 
 type Props = {};
 
 async function userProfile({}: Props) {
-  const supabaseClient = createServerComponentSupabaseClient();
+  const supabase = createServerClient();
 
   // fetch user data
   const fetchUser = async () => {
     const {
       data: { user },
       error,
-    } = await supabaseClient.auth.getUser();
+    } = await supabase.auth.getUser();
     return { user };
   };
 
