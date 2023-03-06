@@ -1,11 +1,19 @@
 import React from "react";
-import Profile from "@/components/Profile";
+import type { NextPage } from 'next'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import Profile from '@/components/Profile'
+import { useSupabase } from '@/components/SupabaseProvider';
 import { createServerClient } from "@/lib/supabase-server";
+
+import { redirect } from 'next/navigation';
+
 
 type Props = {};
 
-async function userProfile({}: Props) {
-  const supabase = createServerClient();
+
+async function Home({}: Props) {
+
+  const supabase  = createServerClient();
 
   // fetch user data
   const fetchUser = async () => {
@@ -18,11 +26,16 @@ async function userProfile({}: Props) {
 
   const { user } = await fetchUser();
 
-  return (
-    <div className="flex flex-col min-h-full py-12 px-3 sm:px-6 lg:px-8">
-      <Profile email={user?.email || ""} id={user?.id || ""} />
-    </div>
-  );
+  if (!user) {
+    redirect('/login');
+  }
+
+  return  (
+    <>
+    <h3>Account</h3>
+    <Profile email={user?.email || ""} id={user?.id || ""} />  
+  </>
+);
 }
 
-export default userProfile;
+export default Home

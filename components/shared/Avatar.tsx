@@ -1,36 +1,54 @@
-import React, { useState } from "react";
+
+
 import Image from "@/components/shared/Image";
 import classNames from "classnames";
+import React, { useEffect, useState } from 'react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { Database } from '@/db_types'
 
-interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  src: string;
-  className?: string;
-}
+type Profiles = Database['public']['Tables']['users']['Row']
 
-const Avatar: React.FC<AvatarProps> = ({ src, className, ...props }) => {
-  const [isLoadFailed, setIsLoadFailed] = useState(false);
 
-  const handleImageError = () => {
-    setIsLoadFailed(true);
-  };
+export default function Avatar({
+  uid,
+  url
+}: {
+  uid: string
+  url: Profiles['avatarUrl']
+  
+}) {
+  const supabase = useSupabaseClient<Database>()
+  const [avatarUrl, setAvatarUrl] = useState<Profiles['avatarUrl']>(null)
+  const [uploading, setUploading] = useState(false)
+
+  useEffect(() => {
+    async function downloadImage(path: string) {
+      try {
+        const { data, error } = await supabase.storage.from('avatars').download(path)
+        if (error) {
+          throw error
+        }
+        const url = URL.createObjectURL(data)
+        setAvatarUrl(url)
+      } catch (error) {
+        console.log('Error downloading image: ', error)
+      }
+    }
+
+    if (url) downloadImage(url)
+  }, [url, supabase.storage])
 
   return (
-    <div
-      className={classNames(
-        "shrink-0 relative w-10 h-10 rounded-full",
-        className
+    <div>
+      {avatarUrl ? (
+        <img
+          src={avatarUrl}
+          alt="Avatar"
+          className="avatar image"
+        />  
+      ) : (
+        <div className="avatar no-image"/>
       )}
-      {...props}
-    >
-      <Image
-        onError={handleImageError}
-        src={isLoadFailed || !src ? "/fallback_profile.png" : src}
-        alt="avatar"
-        layout="fill"
-        className="rounded-full"
-      />
     </div>
   );
 };
-
-export default React.memo(Avatar);

@@ -1,19 +1,22 @@
-import Avatar from "@/components/shared/Avatar"
-import LogoutButton from "@/components/LogoutButton"
-import Button from "@/components/shared/Button"
-import { supabaseClient } from "@/lib/supabase-browser"
-import React from "react";
-import { HiOutlineLogout } from "react-icons/hi";
 import Link from "next/link";
-import { AiOutlineUpload, AiOutlineUser } from "react-icons/ai";
+import { useSupabase } from '@/components/SupabaseProvider';
+import Button from "@/components/shared/Button";
 
-const HeaderProfile = () => {
 
-  return (
-      <div className="space-y-2">
-        <LogoutButton />
+export default function HeaderProfile() {
+
+  const { supabase, session } = useSupabase();
+
+
+  return !session ? (
+      <Link href='/login'>
+      <Button primary>
+        <p className="font-semibold line-clamp-1">Login</p>
+      </Button>
+      </Link>
+    ) : (
+      <div className="flex space-y-2">
+        <Link href="/profile">Profile</Link>
       </div>
   );
 };
-
-export default React.memo(HeaderProfile);

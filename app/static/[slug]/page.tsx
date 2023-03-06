@@ -1,8 +1,8 @@
+
 import { supabaseClient } from '../../../lib/supabase-browser'
 import { notFound } from 'next/navigation'
 
-export const revalidate = 60
-export const dynamic = 'force-static';
+export const dynamic = 'force-static'
 
 const supabase = supabaseClient();
 
@@ -16,6 +16,7 @@ export async function generateStaticParams() {
 
 export default async function Post({ params: { slug } }: { params: { slug: string } }) {
   const { data: post } = await supabase.from('posts').select().match({ slug }).single()
+
 
   if (!post) {
     notFound()

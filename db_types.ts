@@ -30,6 +30,32 @@ export interface Database {
           content?: string
           user_id?: string
         }
+      },
+      users: {
+        Row: {
+          id: string | null
+          created_at: string | null
+          username: string | null
+          email: string | null
+          bio: string | null
+          avatarUrl: string | null
+        }
+        Insert: {
+          id?: string | null
+          created_at?: string | null
+          username?: string | null
+          email?: string | null
+          bio?: string | null
+          avatarUrl?: string | null
+        }
+        Update: {
+          id?: string | null
+          created_at?: string | null
+          username?: string | null
+          email?: string | null
+          bio?: string | null
+          avatarUrl?: string | null
+        }
       }
     }
     Views: {

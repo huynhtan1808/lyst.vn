@@ -104,6 +104,7 @@ const googleSignInHandler = async () => {
         break;
     }
   };
+  
 
   return session ? (
       <LogoutButton/>

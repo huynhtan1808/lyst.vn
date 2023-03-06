@@ -3,6 +3,10 @@
 import HeaderProfile from "@/components/shared/HeaderProfile";
 import Button from "@/components/shared/Button";
 import Link from 'next/link';
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSupabase } from '@/components/SupabaseProvider';
+import LogoutButton from "./LogoutButton";
+
 
 type Props = {};
 
@@ -55,14 +59,9 @@ const Navbar = (props: Props) => {
           <NavLink key={index} title={link.title} href={link.href} />
         ))}
       </div>
-      
-          <div className="flex items-center space-x-2">
-            <Link href='/login'>
-                <Button primary>
-                  <p className="font-semibold line-clamp-1">Login</p>
-                </Button>
-            </Link>
-          </div>
+      <div className="flex items-center space-x-2">
+        <HeaderProfile/>
+      </div>
       </nav>
       </div>
     </div>

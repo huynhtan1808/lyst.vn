@@ -38,7 +38,7 @@ export default async function RootLayout({
           <main className="max-w-6xl px-4 mx-4 mt-4 md:mt-4 lg:mt-20 lg:mx-auto">
           {children}
           </main>
-        </ SupabaseProvider>
+      </ SupabaseProvider>
       </body>
     </html>
   )

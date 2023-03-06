@@ -29,7 +29,8 @@ const LogoutButton = (props: Props) => {
   return (
     <div>
       <Button
-        onClick={logout}
+      className="text-red-500"
+      onClick={logout}
       >
         Logout
       </Button>
