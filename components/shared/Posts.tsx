@@ -18,11 +18,11 @@ const BlogPosts = ({ id, slug, title, featured_image }: Props) => {
         <Image 
         src={featured_image}
         alt="abc" 
-        height='200'
+        height='100'
         width='200'
-        style={{ height: 'auto', objectFit: 'contain', position: 'relative' }}
+        className="object-cover w-46 h-36"
         />
-        <h2>{title}</h2>
+        <h2 className="font-bold p-2">{title}</h2>
         </Link>
     </div>
   );

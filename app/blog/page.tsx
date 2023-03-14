@@ -1,7 +1,6 @@
 
 import Link from 'next/link'
 import { supabaseClient } from '../../lib/supabase-browser'
-import Image from '@/components/shared/Image'
 import BlogPosts from '@/components/shared/Posts'
 
 export const revalidate = 0

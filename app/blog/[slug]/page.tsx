@@ -1,5 +1,6 @@
 import { supabaseClient } from '@/lib/supabase-browser'
 import { notFound } from 'next/navigation'
+import Image from '@/components/shared/Image'
 
 export const dynamic = 'force-static'
 
@@ -22,7 +23,14 @@ export default async function Post({ params: { slug } }: { params: { slug: strin
   }
 
   return (
-    <section>
+    <section className="max-w-3xl mx-auto">
+       <Image 
+        src={post.featured_image!}
+        alt="abc" 
+        height='500'
+        width='800'
+        className="object-cover w-full h-96"
+        />
       <h1 className='text-2xl font-bold'>
         {post.title}
       </h1>

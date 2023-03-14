@@ -87,8 +87,8 @@ export default function AddPost() {
     }
    
   return (
-    <div className="container-fluid">
-      <div style={{ width: "400px" }}>
+    <div className="max-w-3xl mx-auto">
+      <div>
       <form
           className="mt-3"
           onSubmit={(e) => {
