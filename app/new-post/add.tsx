@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useSupabase } from '@/components/SupabaseProvider';
-
 import { Database } from '@/db_types'
 import Button from "@/components/shared/Button"
 
@@ -100,11 +99,12 @@ export default function AddPost() {
         <input
           id="featured_image"
           type="file"
+          className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           accept="image/*"
           onChange={(e) => handleImage(e)}
         />
 
-        <label htmlFor="website">Title</label>
+        <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
@@ -113,7 +113,7 @@ export default function AddPost() {
           onChange={(e) => setTitle(e.target.value)}
         />
    
-        <label htmlFor="website">Content</label>
+        <label htmlFor="Content">Content</label>
         <input
           id="content"
           type="text"
@@ -123,7 +123,7 @@ export default function AddPost() {
         />
     
     
-        <label htmlFor="website">Slug</label>
+        <label htmlFor="slug">Slug</label>
         <input
           id="slug"
           type="text"

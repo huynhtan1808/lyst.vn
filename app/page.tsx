@@ -1,24 +1,33 @@
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import RealtimePosts from './new-post/realtime-posts';
 import { createServerClient } from '@/lib/supabase-server';
+import BlogPosts from '@/components/shared/Posts'
 
 
-const inter = Inter({ subsets: ['latin'] })
+export const revalidate = 0
 
 export default async function Home() {
 
   const supabase = createServerClient()
 
-  const { data } = await supabase.from('posts').select('*')
-
+  const { data: posts } = await supabase.from('posts').select('id, slug, title, featured_image')
 
   return (
-    <main className="">
+    <main>
       <div className="">
        <h1 className='text-3xl font-bold'>Home</h1>
       </div>
-      <RealtimePosts serverPosts={data} />
+      <div className="flex flex-wrap gap-5 mt-5">
+        {posts.map((post: any) => (
+        <BlogPosts
+        id={post.id}
+        featured_image={post.featured_image}
+        title={post.title}
+        slug={post.slug}
+        />
+        ))}
+      </div>
+    
     </main>
   )
 }
