@@ -11,34 +11,41 @@ export interface Database {
     Tables: {
       posts: {
         Row: {
-          id: string
-          created_at: string
-          title: string
-          content: string
-          user_id: string
+          id: string | null
+          created_at: string | null
+          title: string | null
+          content: string | null
+          slug: string | null
+          user_id: string | null
+          featured_image: string | null
         }
         Insert: {
-          id?: string
-          created_at?: string
-          content: string
-          user_id?: string
+          id?: string | null
+          created_at?: string | null
+          title: string | null
+          content: string | null
+          slug: string | null
+          user_id?: string | null
+          featured_image?: string | null
         }
         Update: {
-          id?: string
-          created_at?: string
-          title?: string
-          content?: string
-          user_id?: string
+          id?: string | null
+          created_at?: string | null
+          title?: string | null
+          content?: string | null
+          slug?: string | null
+          user_id?: string | null
+          featured_image?: string | null
         }
       },
-      users: {
+      profiles: {
         Row: {
           id: string | null
           created_at: string | null
           username: string | null
           email: string | null
           bio: string | null
-          avatarUrl: string | null
+          avatar_url: string | null
         }
         Insert: {
           id?: string | null
@@ -46,7 +53,7 @@ export interface Database {
           username?: string | null
           email?: string | null
           bio?: string | null
-          avatarUrl?: string | null
+          avatar_url?: string | null
         }
         Update: {
           id?: string | null
@@ -54,7 +61,7 @@ export interface Database {
           username?: string | null
           email?: string | null
           bio?: string | null
-          avatarUrl?: string | null
+          avatar_url?: string | null
         }
       }
     }

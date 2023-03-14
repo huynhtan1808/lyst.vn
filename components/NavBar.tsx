@@ -1,11 +1,5 @@
-'use client';
-
 import HeaderProfile from "@/components/shared/HeaderProfile";
-import Button from "@/components/shared/Button";
 import Link from 'next/link';
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useSupabase } from '@/components/SupabaseProvider';
-import LogoutButton from "./LogoutButton";
 
 
 type Props = {};
@@ -15,8 +9,8 @@ type NavLinkProps = {
   href: string;
 };
 
-export const NavLink = ({ title, href }: NavLinkProps) => {
 
+export const NavLink = ({ title, href }: NavLinkProps) => {
 
   return (
     <Link href={href}>
@@ -30,6 +24,7 @@ export const NavLink = ({ title, href }: NavLinkProps) => {
 };
 
 const Navbar = (props: Props) => {
+
   // links
   const links: NavLinkProps[] = [
     {
@@ -38,7 +33,7 @@ const Navbar = (props: Props) => {
     },
     {
       title: "Blog",
-      href: "/static",
+      href: "/blog",
     },
   ];
 
@@ -60,7 +55,10 @@ const Navbar = (props: Props) => {
         ))}
       </div>
       <div className="flex items-center space-x-2">
-        <HeaderProfile/>
+      
+      <div className="flex space-y-2">
+         <HeaderProfile />
+      </div>
       </div>
       </nav>
       </div>

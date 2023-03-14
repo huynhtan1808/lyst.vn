@@ -1,5 +1,4 @@
-
-import { supabaseClient } from '../../../lib/supabase-browser'
+import { supabaseClient } from '@/lib/supabase-browser'
 import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-static'

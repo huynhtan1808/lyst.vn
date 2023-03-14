@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
       className={classNames(
         "text-base flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-opacity-80",
         className,
-        props.primary && "hover:bg-primary-500",
+        props.primary && "hover:bg-green-600",
         secondary && "bg-red-500 hover:bg-red-600"
       )}
       {...props}

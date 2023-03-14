@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useCallback, useState } from "react";
 import NextImage, { ImageProps as NextImageProps } from "next/image";
 import { motion } from "framer-motion";

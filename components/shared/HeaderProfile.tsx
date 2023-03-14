@@ -1,22 +1,26 @@
+'use client';
+
 import Link from "next/link";
 import { useSupabase } from '@/components/SupabaseProvider';
-import Button from "@/components/shared/Button";
-
 
 export default function HeaderProfile() {
 
-  const { supabase, session } = useSupabase();
+  const { session } = useSupabase();
 
-
-  return !session ? (
-      <Link href='/login'>
-      <Button primary>
-        <p className="font-semibold line-clamp-1">Login</p>
-      </Button>
-      </Link>
-    ) : (
-      <div className="flex space-y-2">
-        <Link href="/profile">Profile</Link>
-      </div>
-  );
+  
+  return session ? (
+    <div>
+    <Link href='/new-post'>
+    <button >
+      <p className=" ml-5 font-semibold line-clamp-1">Add Post</p>
+    </button>
+    </Link>
+    </div>
+     ) : (
+    <Link href='/login'>
+    <button >
+      <p className="font-semibold line-clamp-1">Login</p>
+    </button>
+    </Link>
+    )
 };
