@@ -11,6 +11,9 @@ export default async function Home() {
   const supabase = createServerClient()
 
   const { data: posts } = await supabase.from('posts').select('id, slug, title, featured_image')
+  if (!posts) {
+    return <p>No posts found.</p>
+  }
 
   return (
     <main>

@@ -12,15 +12,21 @@ export default async function Posts() {
   if (!posts) {
     return <p>No posts found.</p>
   }
-  return posts.map((post: any) => (
-    <div>
-       <BlogPosts
-       id={post.id}
-       featured_image={post.featured_image}
-       title={post.title}
-       slug={post.slug}
-    />
+  return (
+    <>
+    <div className="">
+       <h1 className='text-3xl font-bold'>Blog</h1>
     </div>
-   
-  ))
+    <div className="flex flex-wrap gap-5 mt-5">
+    {posts.map((post: any) => (
+    <BlogPosts
+    id={post.id}
+    featured_image={post.featured_image}
+    title={post.title}
+    slug={post.slug}
+    />
+    ))}
+  </div>
+  </>
+  )
 }
