@@ -29,14 +29,13 @@ export default async function Post({ params: { slug } }: { params: { slug: strin
         alt="abc" 
         height='500'
         width='800'
-        className="object-cover w-full h-96"
+        className="object-cover block aspect-[16/9] rounded-md"
         />
-      <h1 className='text-2xl font-bold'>
+      <h1 className='text-2xl font-bold mt-5 mb-2'>
         {post.title}
       </h1>
-      <p>
-        {post.content}
-      </p>
+      <div dangerouslySetInnerHTML={{ __html: post.description }}>
+      </div>
     </section>
   );
 }

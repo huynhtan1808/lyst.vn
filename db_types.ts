@@ -14,7 +14,7 @@ export interface Database {
           id: string | null
           created_at: string | null
           title: string | null
-          content: string | null
+          description: string | null
           slug: string | null
           user_id: string | null
           featured_image: string | null
@@ -23,7 +23,7 @@ export interface Database {
           id?: string | null
           created_at?: string | null
           title: string | null
-          content: string | null
+          description: string | null
           slug: string | null
           user_id?: string | null
           featured_image?: string | null
@@ -32,7 +32,7 @@ export interface Database {
           id?: string | null
           created_at?: string | null
           title?: string | null
-          content?: string | null
+          description?: string | null
           slug?: string | null
           user_id?: string | null
           featured_image?: string | null

@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react'
 import { useSupabase } from '@/components/SupabaseProvider';
 import { Database } from '@/db_types'
 import Button from "@/components/shared/Button"
+import Editor from "@/components/shared/Editor"
 
 type Posts = Database['public']['Tables']['posts']['Row']
 
 const initialState = {
   title: "",
-  content: "",
+  description: "",
   slug: "",
   featured_image: "",
 };
@@ -19,15 +20,14 @@ export default function AddPost() {
 
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState<Posts['title']>(null)
-  const [content, setContent] = useState<Posts['content']>(null)
+  const [description, setDescription] = useState<Posts['description']>(null)
   const [slug, setSlug] = useState<Posts['slug']>(null)
   const [user_id, setUserID] = useState<Posts['user_id']>(null)
   const [featured_image, setFeaturedImage] = useState<Posts['featured_image']>(null)
   const [formData, setFormData] = useState(initialState);
 
 
-
-  const handleImage = async (e) => {
+  const handleImage = async (e : any) => {
     const reader = new FileReader();
     reader.onloadend = async () => {
       setLoading(true);
@@ -52,13 +52,13 @@ export default function AddPost() {
   
   async function addPost({
     title,
-    content,
+    description,
     slug,
     featured_image,
     user_id,
   }: {
     title: Posts['title']
-    content: Posts['content']
+    description: Posts['description']
     slug: Posts['slug']
     featured_image: Posts['featured_image']
     user_id: Posts['user_id']
@@ -68,11 +68,11 @@ export default function AddPost() {
 
         const updates = {
           title,
-          content,
+          description,
           slug,
           featured_image : `${formData.featured_image}`,
           created_at: new Date().toISOString(),
-          user_id: session.user.id
+          user_id: session?.user.id
         }
 
         let { error } = await supabase.from('posts').upsert(updates)
@@ -93,7 +93,7 @@ export default function AddPost() {
           className="mt-3"
           onSubmit={(e) => {
             e.preventDefault();
-            addPost({ title, content, slug, featured_image, user_id })
+            addPost({ title, description, slug, featured_image, user_id })
           }}
         >
         <input
@@ -113,15 +113,12 @@ export default function AddPost() {
           onChange={(e) => setTitle(e.target.value)}
         />
    
-        <label htmlFor="Content">Content</label>
-        <input
-          id="content"
-          type="text"
-          className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-          value={content || ''}
-          onChange={(e) => setContent(e.target.value)}
+        
+        <label htmlFor="Description">Content</label>
+        <Editor
+            description={description}
+            setDescription={setDescription}
         />
-    
     
         <label htmlFor="slug">Slug</label>
         <input
@@ -134,7 +131,7 @@ export default function AddPost() {
           <div>
           <Button
             className="mt-5 bg-red-500"
-            onClick={() => addPost({ title, content, slug, user_id, featured_image  })}
+            onClick={() => addPost({ title, description, slug, user_id, featured_image })}
           >
             Publish
           </Button>

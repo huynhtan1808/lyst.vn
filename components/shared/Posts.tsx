@@ -12,15 +12,15 @@ type Props = {
 const BlogPosts = ({ id, slug, title, featured_image }: Props) => {
   return (
         <div 
-        className="bg-gray-100 border border-gray-200"
+        className=""
         key={id}>
         <Link href={`/blog/${slug}`}>
         <Image 
         src={featured_image}
         alt="abc" 
-        height='100'
-        width='200'
-        className="object-cover w-46 h-36"
+        height='300'
+        width='500'
+        className="object-cover block aspect-[16/9] rounded-md transition-transform duration-400 photo-zoom"
         />
         <h2 className="font-bold p-2">{title}</h2>
         </Link>

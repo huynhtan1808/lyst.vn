@@ -17,7 +17,7 @@ export default async function Posts() {
     <div className="">
        <h1 className='text-3xl font-bold'>Blog</h1>
     </div>
-    <div className="flex flex-wrap gap-5 mt-5">
+    <div className="flex flex-wrap grid md:grid-cols-2 lg:grid-cols-4 py-3 gap-6">
     {posts.map((post: any) => (
     <BlogPosts
     id={post.id}
