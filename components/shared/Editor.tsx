@@ -5,8 +5,12 @@ import Placeholder from '@tiptap/extension-placeholder';
 import classNames from "classnames";
 
 
-const Editor = ({ description, setDescription }) => {
-  // console.log('description', description);
+type Props = {
+  description: string;
+  setDescription: string;
+};
+
+const Editor = ({ description, setDescription } : Props) => {
 
   const sampleDesc = `Describe your product in 4-5 bullet points...
     Point #1: this is an explanation of my product.

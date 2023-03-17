@@ -23,6 +23,7 @@ export default async function Home() {
       <div className="flex flex-wrap md:grid md:grid-cols-2 lg:grid-cols-4 py-3 gap-6">
         {posts.map((post: any) => (
         <BlogPosts
+        key={post.id}
         id={post.id}
         featured_image={post.featured_image}
         title={post.title}

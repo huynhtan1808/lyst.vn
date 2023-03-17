@@ -1,9 +1,14 @@
 
 import Navbar from '@/components/NavBar'
 import ToasterComponents from "../components/ToasterComponents";
-import { createServerClient } from "../lib/supabase-server";
 import SupabaseListener from '@/components/SupabaseListener';
 import SupabaseProvider from '@/components/SupabaseProvider';
+import { UserContextProvider } from '@/contexts/AuthContext';
+import { createServerClient } from "../lib/supabase-server";
+
+
+
+
 
 import type { Database } from '../db_types';
 import type { SupabaseClient } from '@supabase/auth-helpers-nextjs';
@@ -27,7 +32,11 @@ export default async function RootLayout({
 
   const accessToken = session?.access_token;
 
+
+
   return (
+  
+    
     <html lang="en">
       {/*
         <head /> will contain the components returned by the nearest parent
@@ -36,16 +45,17 @@ export default async function RootLayout({
       <head />
       
       <body className="mb-40">
-      <SupabaseProvider session={session}>
-          <SupabaseListener serverAccessToken={accessToken} />
+      
+      <UserContextProvider>
+      <SupabaseListener serverAccessToken={accessToken} />
           <Navbar />
           <ToasterComponents />
           <main className="max-w-6xl px-4 mx-4 mt-4 md:mt-4 lg:mt-20 lg:mx-auto">
           {children}
           </main>
-      </SupabaseProvider>
+          </UserContextProvider>
       </body>
-      
     </html>
+    
   )
 }

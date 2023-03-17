@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react'
-import { useSupabase } from '@/components/SupabaseProvider';
+import { useRouter } from 'next/navigation';
+import { useUser } from '@/contexts/AuthContext';
 import { Database } from '@/db_types'
 import Button from "@/components/shared/Button"
 import Editor from "@/components/shared/Editor"
@@ -16,8 +17,8 @@ const initialState = {
 };
 
 export default function AddPost() {
-  const { supabase, session } = useSupabase();
 
+  const { supabase, session } = useUser();
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState<Posts['title']>(null)
   const [description, setDescription] = useState<Posts['description']>(null)

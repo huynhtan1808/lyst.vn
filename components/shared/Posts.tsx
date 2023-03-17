@@ -11,9 +11,7 @@ type Props = {
 
 const BlogPosts = ({ id, slug, title, featured_image }: Props) => {
   return (
-        <div 
-        className=""
-        key={id}>
+        <div key={id}>
         <Link href={`/blog/${slug}`}>
         <Image 
         src={featured_image}

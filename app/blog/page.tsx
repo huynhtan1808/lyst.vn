@@ -6,6 +6,7 @@ import BlogPosts from '@/components/shared/Posts'
 export const revalidate = 0
 
 export default async function Posts() {
+
   const supabase = supabaseClient();
 
   const { data: posts } = await supabase.from('posts').select('id, slug, title, featured_image')
@@ -20,6 +21,7 @@ export default async function Posts() {
     <div className="flex flex-wrap grid md:grid-cols-2 lg:grid-cols-4 py-3 gap-6">
     {posts.map((post: any) => (
     <BlogPosts
+    key={post.id}
     id={post.id}
     featured_image={post.featured_image}
     title={post.title}

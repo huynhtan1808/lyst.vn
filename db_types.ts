@@ -41,26 +41,20 @@ export interface Database {
       profiles: {
         Row: {
           id: string | null
-          created_at: string | null
           username: string | null
-          email: string | null
-          bio: string | null
+          full_name: string | null
           avatar_url: string | null
         }
         Insert: {
           id?: string | null
-          created_at?: string | null
           username?: string | null
-          email?: string | null
-          bio?: string | null
+          full_name?: string | null
           avatar_url?: string | null
         }
         Update: {
           id?: string | null
-          created_at?: string | null
           username?: string | null
-          email?: string | null
-          bio?: string | null
+          full_name?: string | null
           avatar_url?: string | null
         }
       }
