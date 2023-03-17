@@ -2,7 +2,7 @@
 
 import React from "react";
 import toast from "react-hot-toast";
-import {supabaseClient}  from "../lib/supabase-browser";
+import { useUser } from '@/contexts/AuthContext';
 import Button from "@/components/shared/Button"
 
 
@@ -10,7 +10,7 @@ type Props = {};
 
 const LogoutButton = (props: Props) => {
 
-  const supabase = supabaseClient();
+  const { supabase } = useUser();
 
   const logout = async () => {
     const loadingToast = toast.loading("logging out");
