@@ -14,10 +14,13 @@ type Props = {};
 
 function AuthPage({}: Props) {
 
-  const {user} = useUser();
-  const supabase = supabaseClient()
+  const router = useRouter();
+  const {user, supabase}  = useUser();
 
-  
+  if (user) {
+    router.push('/');
+  }
+
   const [credentials, setCredentials] = useState<{
     email: string;
     password: string;

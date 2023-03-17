@@ -6,8 +6,8 @@ import classNames from "classnames";
 
 
 type Props = {
-  description: string;
-  setDescription: string;
+  description: string | null;
+  setDescription?: (content: string) => void;
 };
 
 const Editor = ({ description, setDescription } : Props) => {

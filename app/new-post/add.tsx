@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation';
+import { useRouter, redirect } from 'next/navigation';
 import { useUser } from '@/contexts/AuthContext';
 import { Database } from '@/db_types'
 import Button from "@/components/shared/Button"
@@ -18,14 +18,19 @@ const initialState = {
 
 export default function AddPost() {
 
-  const { supabase, session } = useUser();
+  const { userDetails , supabase } = useUser();
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState<Posts['title']>(null)
   const [description, setDescription] = useState<Posts['description']>(null)
   const [slug, setSlug] = useState<Posts['slug']>(null)
-  const [user_id, setUserID] = useState<Posts['user_id']>(null)
-  const [featured_image, setFeaturedImage] = useState<Posts['featured_image']>(null)
+  const [user_id] = useState<Posts['user_id']>(null)
+  const [featured_image] = useState<Posts['featured_image']>(null)
   const [formData, setFormData] = useState(initialState);
+
+
+  if (!userDetails) {
+    redirect('/login');
+  }
 
 
   const handleImage = async (e : any) => {
@@ -38,8 +43,7 @@ export default function AddPost() {
     const data = new FormData();
     data.append("file", files);
     data.append("upload_preset", "c_tags");
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dld0jgbne/image/upload",
+    const res = await fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,
       {
         method: "POST",
         body: data,
@@ -73,7 +77,7 @@ export default function AddPost() {
           slug,
           featured_image : `${formData.featured_image}`,
           created_at: new Date().toISOString(),
-          user_id: session?.user.id
+          user_id: userDetails?.id
         }
 
         let { error } = await supabase.from('posts').upsert(updates)
