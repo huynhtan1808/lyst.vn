@@ -47,7 +47,7 @@ export default async function RootLayout({
       <body className="mb-40">
       
       <UserContextProvider>
-      <SupabaseListener serverAccessToken={accessToken} />
+      
           <Navbar />
           <ToasterComponents />
           <main className="max-w-6xl px-4 mx-4 mt-4 md:mt-4 lg:mt-20 lg:mx-auto">

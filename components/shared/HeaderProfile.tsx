@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useUser } from '@/contexts/AuthContext';
 import Avatar from "@/components/shared/Avatar";
-
+import LogoutButton from "../LogoutButton";
 
 export default function HeaderProfile() {
 
@@ -17,6 +17,7 @@ export default function HeaderProfile() {
           </button>
       </Link>
       <Avatar src={userDetails.avatar_url} className="w-8 h-8" />
+      <LogoutButton/>
       <div>
       </div>
       

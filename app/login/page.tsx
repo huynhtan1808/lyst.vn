@@ -14,16 +14,10 @@ type Props = {};
 
 function AuthPage({}: Props) {
 
-  const router = useRouter();
-  const { userDetails } = useUser();
+  const {user} = useUser();
   const supabase = supabaseClient()
 
-  useEffect(() => {
-    if (userDetails) {
-      router.push('/');
-    }
-  }, [userDetails]);
-
+  
   const [credentials, setCredentials] = useState<{
     email: string;
     password: string;
@@ -116,7 +110,7 @@ const googleSignInHandler = async () => {
     }
   };
 
-  return userDetails ? (
+  return user ? (
   <LogoutButton/>
   ) : (
     <>

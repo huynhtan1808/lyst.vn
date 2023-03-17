@@ -31,8 +31,8 @@ type UserContextType = {
   session: MaybeSession;
 };
 
-export const UserContext = createContext<UserContextType | null>(
-  null
+export const UserContext = createContext<UserContextType | undefined>(
+  undefined
 );
 
 export interface Props {
@@ -85,7 +85,9 @@ export const UserContextProvider = (props: Props) => {
   // Set cookies on auth state change
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
-      const user = supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
       if (!session) {
         setUserDetails(null);
