@@ -17,7 +17,7 @@ export interface Database {
           description: string | null
           slug: string | null
           user_id: string | null
-          featured_image: string | null
+          images: string | null
         }
         Insert: {
           id?: string | null
@@ -26,7 +26,7 @@ export interface Database {
           description: string | null
           slug: string | null
           user_id?: string | null
-          featured_image?: string | null
+          images?: string | null
         }
         Update: {
           id?: string | null
@@ -35,26 +35,26 @@ export interface Database {
           description?: string | null
           slug?: string | null
           user_id?: string | null
-          featured_image?: string | null
+          images?: string | null
         }
       },
-      profiles: {
+      users: {
         Row: {
           id: string | null
           username: string | null
-          full_name: string | null
+          name: string | null
           avatar_url: string | null
         }
         Insert: {
           id?: string | null
           username?: string | null
-          full_name?: string | null
+          name?: string | null
           avatar_url?: string | null
         }
         Update: {
           id?: string | null
           username?: string | null
-          full_name?: string | null
+          name?: string | null
           avatar_url?: string | null
         }
       }

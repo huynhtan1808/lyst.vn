@@ -14,9 +14,11 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Post({ params: { slug } }: { params: { slug: string } }) {
+export default async function Post({ 
+  params: { slug } }: { params: { slug: string } }) {
   const { data: post } = await supabase.from('posts').select().match({ slug }).single()
 
+  const content = {__html : post?.description};
 
   if (!post) {
     notFound()
@@ -25,7 +27,7 @@ export default async function Post({ params: { slug } }: { params: { slug: strin
   return (
     <section className="max-w-3xl mx-auto">
        <Image 
-        src={post.featured_image!}
+        src={post.images!}
         alt="abc" 
         height='500'
         width='800'
@@ -34,8 +36,7 @@ export default async function Post({ params: { slug } }: { params: { slug: strin
       <h1 className='text-2xl font-bold mt-5 mb-2'>
         {post.title}
       </h1>
-      <div dangerouslySetInnerHTML={{ __html: post.description }}>
-      </div>
+      <div dangerouslySetInnerHTML={content} />
     </section>
   );
 }

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react'
-import { useRouter, redirect } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react'
 import { useUser } from '@/contexts/AuthContext';
 import { Database } from '@/db_types'
+import { redirect } from 'next/navigation';
+
 import Button from "@/components/shared/Button"
 import Editor from "@/components/shared/Editor"
 
@@ -13,101 +14,99 @@ const initialState = {
   title: "",
   description: "",
   slug: "",
-  featured_image: "",
+  images: "",
 };
 
 export default function AddPost() {
 
-  const { userDetails , supabase } = useUser();
+  const { user, userDetails , supabase } = useUser();
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState<Posts['title']>(null)
   const [description, setDescription] = useState<Posts['description']>(null)
   const [slug, setSlug] = useState<Posts['slug']>(null)
   const [user_id] = useState<Posts['user_id']>(null)
-  const [featured_image] = useState<Posts['featured_image']>(null)
-  const [formData, setFormData] = useState(initialState);
+  const [images, setImages] = useState<Posts['images']>(null)
+  const [imageData, setImageData] = useState(initialState);
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
-
-  if (!userDetails) {
-    redirect('/login');
+  if (!user) {
+    redirect('/');
   }
 
 
-  const handleImage = async (e : any) => {
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-      setLoading(true);
-    };
-    const files = e.target.files[0];
-    if (!files) return;
-    const data = new FormData();
-    data.append("file", files);
-    data.append("upload_preset", "c_tags");
-    const res = await fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const file = await res.json();
-    setFormData({ ...formData, featured_image: file.secure_url });
-    setLoading(false);
-  };
-
-  
   async function addPost({
     title,
     description,
     slug,
-    featured_image,
-    user_id,
   }: {
-    title: Posts['title']
-    description: Posts['description']
-    slug: Posts['slug']
-    featured_image: Posts['featured_image']
-    user_id: Posts['user_id']
+    title: Posts["title"];
+    description: Posts["description"];
+    slug: Posts["slug"];
+    images: Posts['images'];
+    user_id: Posts["user_id"];
   }) {
     try {
-        setLoading(true)
-
-        const updates = {
-          title,
-          description,
-          slug,
-          featured_image : `${formData.featured_image}`,
-          created_at: new Date().toISOString(),
-          user_id: userDetails?.id
-        }
-
-        let { error } = await supabase.from('posts').upsert(updates)
-        if (error) throw error
-        alert('Published!')
-        } catch (error) {
-        alert('Error updating the data!')
-        console.log(error)
-        } finally {
-        setLoading(false)
-        }
+      if (!imageInputRef.current?.files || imageInputRef.current?.files.length === 0) {
+        // You could set some error message in a state here.
+        return;
+      }
+  
+      setLoading(true);
+  
+      const file = imageInputRef.current.files[0];
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "c_tags");
+  
+      const res = await fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`, {
+        method: "POST",
+        body: data,
+      });
+      const returnedFile = await res.json();
+  
+      const newImageData = { ...imageData, images: returnedFile.secure_url };
+      setImageData(newImageData);
+      const updates = {
+        title,
+        description,
+        slug,
+        images: `${newImageData.images}`,
+        created_at: new Date().toISOString(),
+        user_id: userDetails?.id,
+      };
+  
+      let { error } = await supabase.from("posts").upsert(updates);
+      if (error) throw error;
+      alert("Published!");
+    } catch (error) {
+      alert("Error updating the data!");
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-   
+  }
+
+ 
+
+  
+  
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="">
       <div>
       <form
           className="mt-3"
           onSubmit={(e) => {
             e.preventDefault();
-            addPost({ title, description, slug, featured_image, user_id })
+            addPost({ title, description, slug, images, user_id })
           }}
         >
         <input
-          id="featured_image"
+          id="images"
           type="file"
           className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           accept="image/*"
-          onChange={(e) => handleImage(e)}
-        />
+          ref={imageInputRef}
+          />
 
         <label htmlFor="title">Title</label>
         <input
@@ -136,7 +135,7 @@ export default function AddPost() {
           <div>
           <Button
             className="mt-5 bg-red-500"
-            onClick={() => addPost({ title, description, slug, user_id, featured_image })}
+            type="submit"
           >
             Publish
           </Button>

@@ -6,15 +6,15 @@ type Props = {
   id: string;
   slug: string;
   title: string;
-  featured_image: string;
+  images: string;
 };
 
-const BlogPosts = ({ id, slug, title, featured_image }: Props) => {
+const BlogPosts = ({ id, slug, title, images }: Props) => {
   return (
         <div key={id}>
         <Link href={`/blog/${slug}`}>
         <Image 
-        src={featured_image}
+        src={images}
         alt="abc" 
         height='300'
         width='500'

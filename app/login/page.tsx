@@ -1,11 +1,9 @@
 "use client"; // this will tell nextjs to render page client side
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import React, { useState } from "react";
 import AuthForm from "../../components/AuthForm";
 import toast, { Toaster } from "react-hot-toast";
-import {supabaseClient}  from "@/lib/supabase-browser";
 import LogoutButton from "@/components/LogoutButton";
 import { useUser } from '@/contexts/AuthContext';
 

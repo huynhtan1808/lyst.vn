@@ -9,7 +9,7 @@ export default async function Posts() {
 
   const supabase = supabaseClient();
 
-  const { data: posts } = await supabase.from('posts').select('id, slug, title, featured_image')
+  const { data: posts } = await supabase.from('posts').select('id, slug, title, images')
   if (!posts) {
     return <p>No posts found.</p>
   }
@@ -23,7 +23,7 @@ export default async function Posts() {
     <BlogPosts
     key={post.id}
     id={post.id}
-    featured_image={post.featured_image}
+    images={post.images}
     title={post.title}
     slug={post.slug}
     />

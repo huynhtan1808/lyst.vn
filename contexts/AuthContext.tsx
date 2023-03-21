@@ -9,8 +9,7 @@ import {
 import { supabaseClient } from '@/lib/supabase-browser'
 import nookies from "nookies";
 
-import type { Session } from '@supabase/auth-helpers-nextjs';
-import type { SupabaseClient } from '@supabase/auth-helpers-nextjs'
+import type { SupabaseClient, Session } from '@supabase/auth-helpers-nextjs'
 import type { Database } from '@/db_types'
 
 
@@ -71,14 +70,13 @@ export const UserContextProvider = (props: Props) => {
       if (!user) return;
 
       const { data: profileUser } = await supabase
-        .from("profiles")
+        .from("users")
         .select("*")
         .eq("id", user?.id)
         .single();
 
         setUserDetails(profileUser);
     };
-
     getUserDetails();
   }, []);
 
@@ -102,7 +100,7 @@ export const UserContextProvider = (props: Props) => {
         setUserDetails(null);
       } else if (event === "SIGNED_IN") {
         const { data: profileUser } = await supabase
-        .from("profiles")
+        .from("users")
         .select("*")
         .eq("id", user?.id)
         .single();

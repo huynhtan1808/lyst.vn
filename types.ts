@@ -2,8 +2,11 @@ import { User } from "@supabase/gotrue-js";
 
 
 export type UserDetails = User & {
-  id: string /* primary key */;
-  username: string | null;
-  full_name: string | null;
-  avatar_url: string | null;
+  authRole: string;
+  isVerified: boolean;
+  avatarUrl: string;
+  bannerUrl: string;
+  name: string;
+  username: string;
+  bio: string;
 }

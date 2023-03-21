@@ -24,16 +24,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   
-  const supabase = createServerClient();
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  const accessToken = session?.access_token;
-
-
-
   return (
   
     
@@ -45,14 +35,13 @@ export default async function RootLayout({
       <head />
       
       <body className="mb-40">
-      
       <UserContextProvider>
           <Navbar />
           <ToasterComponents />
           <main className="max-w-6xl px-4 mx-4 mt-4 md:mt-4 lg:mt-20 lg:mx-auto">
           {children}
           </main>
-          </UserContextProvider>
+      </UserContextProvider>
       </body>
     </html>
     
