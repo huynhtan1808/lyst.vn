@@ -1,18 +1,9 @@
 
 import Navbar from '@/components/NavBar'
 import ToasterComponents from "../components/ToasterComponents";
-import SupabaseListener from '@/components/SupabaseListener';
-import SupabaseProvider from '@/components/SupabaseProvider';
 import { UserContextProvider } from '@/contexts/AuthContext';
-import { createServerClient } from "../lib/supabase-server";
-
-
-
-
-
 import type { Database } from '../db_types';
 import type { SupabaseClient } from '@supabase/auth-helpers-nextjs';
-
 
 import './globals.css'
 
@@ -23,7 +14,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
+
   return (
   
     

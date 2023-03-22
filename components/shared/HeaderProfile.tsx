@@ -7,16 +7,16 @@ import LogoutButton from "../LogoutButton";
 
 export default function HeaderProfile() {
 
-  const { userDetails } = useUser();
+  const { user } = useUser();
   
-  return userDetails ? (
+  return user ? (
     <div className="flex items-center space-x-2">
       <Link href={'/new-post'}>
           <button >
             <p className="font-semibold line-clamp-1">Add Post</p>
           </button>
       </Link>
-      <Avatar src={userDetails.avatar_url} className="w-8 h-8" />
+      <Avatar src={user.avatar_url} className="w-8 h-8" />
       <LogoutButton/>
       <div>
       </div>

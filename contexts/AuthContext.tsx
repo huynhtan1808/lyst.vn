@@ -1,11 +1,7 @@
 'use client'
 
 import { useEffect, useState, createContext, useContext } from 'react';
-import {
-  useUser as useSupaUser,
-  useSessionContext,
-  User
-} from '@supabase/auth-helpers-react';
+import { useSessionContext } from '@supabase/auth-helpers-react';
 import { supabaseClient } from '@/lib/supabase-browser'
 import nookies from "nookies";
 
@@ -23,8 +19,7 @@ type MaybeSession = Session | null;
 
 type UserContextType = {
   accessToken: string | null;
-  user: User | null;
-  userDetails: UserDetails | null;
+  user: UserDetails | null;
   isLoading: boolean;
   supabase: SupabaseClient<Database>;
   session: MaybeSession;
@@ -43,11 +38,9 @@ export const UserContextProvider = (props: Props) => {
     session,
     isLoading: isLoadingUser,
   } = useSessionContext();
-  const user = useSupaUser();
+  const [user, setUser] = useState<UserDetails | null>(null);
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsloadingData] = useState(false);
-  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
-
   const [supabase] = useState(() => supabaseClient())
   
   // Check if user session is invalid
@@ -55,7 +48,7 @@ export const UserContextProvider = (props: Props) => {
     const session = supabase.auth.getSession();
 
     if (!session) {
-      setUserDetails(null);
+      setUser(null);
 
       nookies.destroy(null, accessTokenCookieName);
       nookies.destroy(null, refreshTokenCookieName);
@@ -67,15 +60,16 @@ export const UserContextProvider = (props: Props) => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
+
       if (!user) return;
 
       const { data: profileUser } = await supabase
-        .from("users")
+        .from<UserDetails | null>("users")
         .select("*")
         .eq("id", user?.id)
         .single();
 
-        setUserDetails(profileUser);
+        setUser(profileUser);
     };
     getUserDetails();
   }, []);
@@ -88,7 +82,7 @@ export const UserContextProvider = (props: Props) => {
       } = await supabase.auth.getUser();
 
       if (!session) {
-        setUserDetails(null);
+        setUser(null);
 
         nookies.destroy(null, accessTokenCookieName);
         nookies.destroy(null, refreshTokenCookieName);
@@ -97,7 +91,7 @@ export const UserContextProvider = (props: Props) => {
       }
 
       if (event === "SIGNED_OUT") {
-        setUserDetails(null);
+        setUser(null);
       } else if (event === "SIGNED_IN") {
         const { data: profileUser } = await supabase
         .from("users")
@@ -105,7 +99,7 @@ export const UserContextProvider = (props: Props) => {
         .eq("id", user?.id)
         .single();
 
-        setUserDetails(profileUser);
+        setUser(profileUser);
       }
 
       const token = session.access_token;
@@ -127,10 +121,10 @@ export const UserContextProvider = (props: Props) => {
     return data.unsubscribe;
   }, []);
 
+  
   const value = {
     accessToken,
     user,
-    userDetails,
     isLoading: isLoadingUser || isLoadingData,
     supabase,
     session,

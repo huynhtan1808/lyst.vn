@@ -41,21 +41,33 @@ export interface Database {
       users: {
         Row: {
           id: string | null
-          username: string | null
-          name: string | null
+          authRole: string | null
+          isVerified: boolean | null
           avatar_url: string | null
+          bannerUrl: string | null
+          name: string | null
+          username: string | null
+          bio: string | null
         }
         Insert: {
           id?: string | null
-          username?: string | null
-          name?: string | null
+          authRole?: string | null
+          isVerified?: boolean | null
           avatar_url?: string | null
+          bannerUrl?: string | null
+          name?: string | null
+          username?: string | null
+          bio?: string | null
         }
         Update: {
           id?: string | null
-          username?: string | null
-          name?: string | null
+          authRole?: string | null
+          isVerified?: boolean | null
           avatar_url?: string | null
+          bannerUrl?: string | null
+          name?: string | null
+          username?: string | null
+          bio?: string | null
         }
       }
     }

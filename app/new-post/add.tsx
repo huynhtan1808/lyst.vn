@@ -19,7 +19,7 @@ const initialState = {
 
 export default function AddPost() {
 
-  const { user, userDetails , supabase } = useUser();
+  const { user , supabase } = useUser();
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState<Posts['title']>(null)
   const [description, setDescription] = useState<Posts['description']>(null)
@@ -29,16 +29,17 @@ export default function AddPost() {
   const [imageData, setImageData] = useState(initialState);
   const imageInputRef = useRef<HTMLInputElement>(null);
 
-  if (!user) {
-    redirect('/');
-  }
 
+  if (!user) {
+    redirect("/login")
+  }
 
   async function addPost({
     title,
     description,
     slug,
-  }: {
+    images,
+  } : {
     title: Posts["title"];
     description: Posts["description"];
     slug: Posts["slug"];
@@ -52,27 +53,36 @@ export default function AddPost() {
       }
   
       setLoading(true);
-  
-      const file = imageInputRef.current.files[0];
+
       const data = new FormData();
-      data.append("file", file);
+      for (let i = 0; i < imageInputRef.current.files.length; i++){
+        const file = imageInputRef.current.files[i];
+        if (Array.isArray(file)) {
+          file.forEach((f) => data.append("file", f));
+        } else {
+          data.append("file", file);
+        }
+      }
+      
       data.append("upload_preset", "c_tags");
-  
+      
       const res = await fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`, {
         method: "POST",
         body: data,
       });
+      
       const returnedFile = await res.json();
   
       const newImageData = { ...imageData, images: returnedFile.secure_url };
       setImageData(newImageData);
+      
       const updates = {
         title,
         description,
         slug,
         images: `${newImageData.images}`,
         created_at: new Date().toISOString(),
-        user_id: userDetails?.id,
+        user_id: user?.id,
       };
   
       let { error } = await supabase.from("posts").upsert(updates);
@@ -86,10 +96,6 @@ export default function AddPost() {
     }
   }
 
- 
-
-  
-  
   return (
     <div className="">
       <div>
@@ -106,6 +112,7 @@ export default function AddPost() {
           className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           accept="image/*"
           ref={imageInputRef}
+          multiple
           />
 
         <label htmlFor="title">Title</label>
