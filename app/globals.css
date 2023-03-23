@@ -31,3 +31,19 @@ a {
   border: 1px solid rgb(200, 200, 200);
   border-radius: 5px;
 }
+.swiper-button {
+  @apply flex items-center justify-center p-2 text-white transition duration-300 border-2 border-white rounded-full cursor-pointer hover:bg-white hover:text-black;
+}
+
+.swiper-button-disabled {
+  @apply cursor-not-allowed opacity-40 hover:text-white hover:bg-transparent;
+}
+.swiper-button-prev {
+  left: unset !important;
+  right: 50px !important;
+}
+.swiper-button-prev:after, .swiper-button-next:after {
+  font-size: 18px !important;
+  color: #000;
+}
+

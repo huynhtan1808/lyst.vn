@@ -7,8 +7,6 @@ export default async function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-
-
   return (
     <main className="">
           {children}

@@ -13,7 +13,7 @@ const CircleButton = React.forwardRef<HTMLButtonElement, CircleButtonProps>(
     return (
       <BaseButton
         className={classNames(
-          "p-2 rounded-full",
+          "pr-5 pl-3 py-0 rounded",
           className,
           props.primary
             ? "hover:bg-primary-500"
