@@ -27,8 +27,8 @@ const Avatar: React.FC<AvatarProps> = ({ src, className, ...props }) => {
         src={isLoadFailed || !src ? "/fallback_profile.png" : src}
         alt="avatar"
         className="rounded-full"
-        width={"32"}
-        height={"32"}
+        width={"36"}
+        height={"36"}
       />
     </div>
   );

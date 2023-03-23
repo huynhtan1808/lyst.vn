@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation';
 
 import Button from "@/components/shared/Button"
 import Editor from "@/components/shared/Editor"
+import Image from '@/components/shared/Image';
 
 type Posts = Database['public']['Tables']['posts']['Row']
 
@@ -28,10 +29,17 @@ export default function AddPost() {
   const [images, setImages] = useState<Posts['images']>(null)
   const [imageData, setImageData] = useState(initialState);
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const [selectedImages, setSelectedImages] = useState([]);
+
+
 
 
   if (!user) {
     redirect("/login")
+  }
+
+  const handleImageInputChange = (e : any) => {
+    setSelectedImages(e.target.files);
   }
 
   async function addPost({
@@ -54,39 +62,38 @@ export default function AddPost() {
   
       setLoading(true);
 
-      const data = new FormData();
+      const imageUrls = [];
+  
       for (let i = 0; i < imageInputRef.current.files.length; i++){
         const file = imageInputRef.current.files[i];
-        if (Array.isArray(file)) {
-          file.forEach((f) => data.append("file", f));
-        } else {
-          data.append("file", file);
-        }
-      }
-      
-      data.append("upload_preset", "c_tags");
-      
-      const res = await fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`, {
-        method: "POST",
-        body: data,
-      });
-      
-      const returnedFile = await res.json();
   
-      const newImageData = { ...imageData, images: returnedFile.secure_url };
-      setImageData(newImageData);
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "c_tags");
+  
+        const res = await fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`, {
+          method: "POST",
+          body: data,
+        });
+  
+        const returnedFile = await res.json();
+        imageUrls.push(returnedFile.secure_url);
+      }
+      const images = imageUrls.join(',');
       
       const updates = {
-        title,
-        description,
-        slug,
-        images: `${newImageData.images}`,
-        created_at: new Date().toISOString(),
-        user_id: user?.id,
-      };
+          title,
+          description,
+          slug,
+          images: images,
+          created_at: new Date().toISOString(),
+          user_id: user?.id,
+        };
   
-      let { error } = await supabase.from("posts").upsert(updates);
-      if (error) throw error;
+        let { error } = await supabase.from("posts").upsert(updates);
+        if (error) throw error;
+    
+  
       alert("Published!");
     } catch (error) {
       alert("Error updating the data!");
@@ -109,19 +116,32 @@ export default function AddPost() {
         <input
           id="images"
           type="file"
-          className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          className="relative block w-full appearance-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           accept="image/*"
           ref={imageInputRef}
+          onChange={handleImageInputChange}
           multiple
+        />
+        <div className='flex'>
+        {selectedImages &&
+        Array.from(selectedImages).map((image, index) => (
+          <img
+            className='w-20 h-20'
+            key={index}
+            src={URL.createObjectURL(image)}
+            alt={`Image ${index + 1}`}
           />
-
+        ))}
+        </div>
+       
         <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
-          className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          className="relative block w-full appearance-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           value={title || ''}
           onChange={(e) => setTitle(e.target.value)}
+          required
         />
    
         
@@ -135,18 +155,19 @@ export default function AddPost() {
         <input
           id="slug"
           type="text"
-          className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          className="relative block w-full appearance-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           value={slug || ''}
           onChange={(e) => setSlug(e.target.value)}
         />
           <div>
-          <Button
-            className="mt-5 bg-red-500"
-            type="submit"
-          >
+        <Button
+          primary
+          className="mt-5 bg-red-500"
+          type="submit"
+        >
             Publish
-          </Button>
-          </div>
+        </Button>
+        </div>
         </form>
       </div>
     </div>

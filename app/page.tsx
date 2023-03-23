@@ -16,22 +16,25 @@ export default async function Home() {
   }
 
   return (
-    <main>
-      <div className="">
-       <h1 className='text-3xl font-bold'>Home</h1>
-      </div>
-      <div className="flex flex-wrap md:grid md:grid-cols-2 lg:grid-cols-4 py-3 gap-6">
-        {posts.map((post: any) => (
-        <BlogPosts
-        key={post.id}
-        id={post.id}
-        images={post.images}
-        title={post.title}
-        slug={post.slug}
-        />
-        ))}
-      </div>
-    
-    </main>
+    <>
+    <div className="">
+       <h1 className='text-3xl font-bold'>HOME</h1>
+    </div>
+    <div className="flex flex-wrap grid md:grid-cols-2 lg:grid-cols-4 py-3 gap-6">
+    {posts.map((post: any) => {
+          const imageUrls = post.images ? post.images.split(",") : [];
+          const imageUrl = imageUrls.shift();
+          return (
+            <BlogPosts
+              key={post.id}
+              id={post.id}
+              images={imageUrl}
+              title={post.title}
+              slug={post.slug}
+            />
+          )
+        })}
+  </div>
+  </>
   )
 }
