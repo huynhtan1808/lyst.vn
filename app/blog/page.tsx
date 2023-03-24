@@ -20,32 +20,33 @@ export default async function Posts() {
     <div className="mt-10">
        <h1 className='text-3xl font-bold mb-5'>Blog</h1>
     </div>
+    <div>
     <Swiper
        slidesPerView={4}
-       slidesPerGroup={4}
+       slidesPerGroup={1}
        breakpoints={{
          1536: {
-           slidesPerView: 4,
-           slidesPerGroup: 4,
+           slidesPerView: 4.2,
+           slidesPerGroup: 1,
            spaceBetween: 20,
          },
          1280: {
-           slidesPerView: 3,
-           slidesPerGroup: 3,
+           slidesPerView: 3.2,
+           slidesPerGroup: 1,
            spaceBetween: 20,
          },
          1024: {
-           slidesPerView: 3,
+           slidesPerView: 3.2,
            slidesPerGroup: 3,
            spaceBetween: 20,
          },
          768: {
-           slidesPerView: 2,
+           slidesPerView: 2.2,
            slidesPerGroup: 2,
            spaceBetween: 20,
          },
          0: {
-           slidesPerView: 1,
+           slidesPerView: 1.2,
            slidesPerGroup: 1,
            spaceBetween: 10,
          },
@@ -67,6 +68,7 @@ export default async function Posts() {
     )
   })}
   </Swiper>
+  </div>
   </>
   )
 }

@@ -28,7 +28,7 @@ const Swiper: React.FC<SwiperProps> = ({
   children,
   hideNavigation,
   onInit,
-  isOverflowHidden = false,
+  isOverflowHidden = true,
   className,
   defaultActiveSlide,
   ...props
@@ -98,10 +98,10 @@ const Swiper: React.FC<SwiperProps> = ({
       {...props}
     >
       {React.Children.map(children, (child) => (
-        <SwiperSlide>{child}</SwiperSlide>
+        <SwiperSlide className='mt-16'>{child}</SwiperSlide>
       ))}
       {!hideNavigation && (
-        <div slot="container-end" className="swiper-navigation absolute right-0 bottom-full mb-10 flex space-x-4">
+        <div slot="container-end" className="swiper-navigation absolute right-0 bottom-full top-6 flex space-x-4">
         <CircleButton
           ref={prevButtonRef}
           outline

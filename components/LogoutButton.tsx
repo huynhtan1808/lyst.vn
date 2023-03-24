@@ -4,6 +4,9 @@ import React from "react";
 import toast from "react-hot-toast";
 import { useUser } from '@/contexts/AuthContext';
 import Button from "@/components/shared/Button"
+import { HiOutlineLogout } from "react-icons/hi";
+import TextIcon from "@/components/shared/TextIcon";
+
 
 
 type Props = {};
@@ -31,10 +34,10 @@ const LogoutButton = (props: Props) => {
   return (
     <div>
       <Button
-      className="text-red-500"
+      className="w-full text-red-500"
       onClick={logout}
       >
-        Logout
+        <TextIcon LeftIcon={HiOutlineLogout}> Logout</TextIcon>
       </Button>
     </div>
   );

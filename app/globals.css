@@ -40,7 +40,10 @@ a {
 }
 .swiper-button-prev {
   left: unset !important;
-  right: 50px !important;
+  right: 40px !important;
+}
+.swiper-button-next {
+  right: 1px !important;
 }
 .swiper-button-prev:after, .swiper-button-next:after {
   font-size: 18px !important;

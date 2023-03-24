@@ -17,7 +17,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, className, ...props }) => {
   return (
     <div
       className={classNames(
-        "shrink-0 relative w-10 h-10 rounded-full",
+        "rounded-full",
         className
       )}
       {...props}
@@ -27,8 +27,8 @@ const Avatar: React.FC<AvatarProps> = ({ src, className, ...props }) => {
         src={isLoadFailed || !src ? "/fallback_profile.png" : src}
         alt="avatar"
         className="rounded-full"
-        width={"36"}
-        height={"36"}
+        width={"50"}
+        height={"50"}
       />
     </div>
   );
