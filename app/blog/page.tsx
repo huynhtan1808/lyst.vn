@@ -17,9 +17,7 @@ export default async function Posts() {
   }
   return (
     <>
-    <div className="mt-10">
-       <h1 className='text-3xl font-bold mb-5'>Blog</h1>
-    </div>
+    <h1 className='text-3xl font-bold'>Blog</h1>
     <div>
     <Swiper
        slidesPerView={4}

@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { useUser } from '@/contexts/AuthContext';
 import { Database } from '@/db_types'
 import { redirect } from 'next/navigation';
+import slugify from 'slugify';
+
 
 import Button from "@/components/shared/Button"
 import Editor from "@/components/shared/Editor"
@@ -31,6 +33,12 @@ export default function AddPost() {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [selectedImages, setSelectedImages] = useState([]);
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+    const slugifiedTitle = slugify(e.target.value, { lower: true });
+    setSlug(slugifiedTitle);
+  };
+
 
 
 
@@ -42,11 +50,20 @@ export default function AddPost() {
     setSelectedImages(e.target.files);
   }
 
+  const generateSlug = (text: string) => {
+    return text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
+  }
+
+  useEffect(() => {
+    if (title) {
+      setSlug(generateSlug(title))
+    }
+  }, [title])
+
   async function addPost({
     title,
     description,
     slug,
-    images,
   } : {
     title: Posts["title"];
     description: Posts["description"];
@@ -133,33 +150,21 @@ export default function AddPost() {
           />
         ))}
         </div>
-       
         <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
           className="relative block w-full appearance-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           value={title || ''}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={handleTitleChange}
           required
         />
-   
-        
         <label htmlFor="Description">Content</label>
         <Editor
             description={description}
             setDescription={setDescription}
         />
-    
-        <label htmlFor="slug">Slug</label>
-        <input
-          id="slug"
-          type="text"
-          className="relative block w-full appearance-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-          value={slug || ''}
-          onChange={(e) => setSlug(e.target.value)}
-        />
-          <div>
+        <div>
         <Button
           primary
           className="mt-5 bg-red-500"

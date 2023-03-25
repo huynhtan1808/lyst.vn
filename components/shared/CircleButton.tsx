@@ -13,13 +13,13 @@ const CircleButton = React.forwardRef<HTMLButtonElement, CircleButtonProps>(
     return (
       <BaseButton
         className={classNames(
-          "pr-5 pl-3 py-0 rounded",
+          "p-2 rounded",
           className,
           props.primary
             ? "hover:bg-primary-500"
             : props.secondary
-            ? "bg-transparent hover:bg-white/20"
-            : "hover:bg-white hover:text-black"
+            ? "bg-transparent hover:bg-gray-200 hover:text-black"
+            : "hover:bg-gray-100 hover:text-black"
         )}
         ref={ref}
         {...rest}

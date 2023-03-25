@@ -105,13 +105,11 @@ const Swiper: React.FC<SwiperProps> = ({
         <CircleButton
           ref={prevButtonRef}
           outline
-          LeftIcon={FiChevronLeft}
           className="swiper-button-prev flex items-center justify-center"
         />
          <CircleButton
           ref={nextButtonRef}
           outline
-          LeftIcon={FiChevronRight}
           className="swiper-button-next flex items-center justify-center"
         />
       </div>     

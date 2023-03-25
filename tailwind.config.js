@@ -24,7 +24,7 @@ module.exports = {
           900: "#0d0d0d",
         },
         typography: {
-          DEFAULT: "#FFFFFF",
+          DEFAULT: "#000000",
           secondary: colors.stone["300"],
         },
       },

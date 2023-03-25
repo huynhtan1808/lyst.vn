@@ -1,5 +1,5 @@
 
-import { createServerClient } from '../../lib/supabase-server';
+import { createServerClient } from '../../../lib/supabase-server';
 import AddPost from './add';
 
 // do not cache this page

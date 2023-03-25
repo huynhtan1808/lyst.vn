@@ -45,7 +45,7 @@ const Navbar = (props: Props) => {
 
   return (
     <div className="border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4 lg:px-0">
         <nav className="sticky-nav flex flex-row justify-between">
         <div className="flex items-center space-x-3">
         <svg id="svgLogo" xmlns="http://www.w3.org/2000/svg" width="38px" height="38px" viewBox="-10 0 80 65">

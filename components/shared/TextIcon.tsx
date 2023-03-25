@@ -5,12 +5,13 @@ export interface IconProps {
   className?: string;
 }
 
-export interface TextIconProps extends Omit<React.HTMLProps<HTMLDivElement>, "as"> {
+export interface TextIconProps
+  extends Omit<React.HTMLProps<HTMLDivElement>, "as"> {
   LeftIcon?: React.ComponentType<IconProps>;
   RightIcon?: React.ComponentType<IconProps>;
   iconClassName?: string;
   className?: string;
-  as?: keyof JSX.IntrinsicElements | React.ComponentType<{ className: string }>;
+  as?: string | React.ComponentType<{ className: string }>;
 }
 
 const TextIcon: React.FC<TextIconProps> = ({

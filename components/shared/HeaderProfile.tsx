@@ -47,9 +47,9 @@ export default function HeaderProfile() {
             <TextIcon LeftIcon={AiOutlineUser}>Profile</TextIcon>
           </Button>
         </Link>
-        <Link href="/new-post">
+        <Link href="/dashboard">
           <Button className="w-full">
-            <TextIcon LeftIcon={AiOutlineUpload}>Upload</TextIcon>
+            <TextIcon LeftIcon={AiOutlineUpload}>Dashboard</TextIcon>
           </Button>
         </Link>
         <LogoutButton />
