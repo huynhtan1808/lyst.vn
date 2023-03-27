@@ -1,19 +1,48 @@
+"use client"
 
-import { createServerClient } from '../../../lib/supabase-server';
-import AddPost from './add/page';
+import { useState, useEffect } from 'react';
+import { supabaseClient } from '@/lib/supabase-browser';
+import BlogPosts from '@/components/shared/PostCard';
+import { useUser } from '@/contexts/AuthContext';
 
-// do not cache this page
 export const revalidate = 0;
 
-// this component fetches the current posts server-side
-// and subscribes to new posts client-side
-export default async function Post() {
-  // data can be passed from server components to client components
-  // this allows us to fetch the initial posts before rendering the page
-  // our <RealtimePosts /> component will then subscribe to new posts client-side
+export default function Posts() {
+  const { user } = useUser();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const supabase = supabaseClient();
+      const { data } = await supabase.from('posts').select('id, slug, title, images').eq('user_id', user?.id)
+      if (!data) {
+        return <p>No posts found.</p>
+      }
+      setPosts(data as never[])
+    }
+    fetchPosts();
+  }, [user]);
+
+  if (!posts) {
+    return <p>No posts found.</p>;
+  }
   return (
     <>
-      <AddPost />
+      <div>
+        {posts.map((post: any) => {
+          const imageUrls = post.images ? post.images.split(",") : [];
+          const imageUrl = imageUrls.shift();
+          return (
+            <BlogPosts
+              key={post.id}
+              id={post.id}
+              images={imageUrl}
+              title={post.title}
+              slug={post.slug}
+            />
+          )
+        })}
+      </div>
     </>
   );
 }

@@ -7,18 +7,14 @@ import Avatar from "@/components/shared/Avatar";
 import LogoutButton from "../LogoutButton";
 import Button from "@/components/shared/Button";
 import TextIcon from "@/components/shared/TextIcon";
-import { AiOutlineUpload, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUpload, AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
 import Popover from "@/components/shared/Popup";
 
 
-export default function HeaderProfile() {
+export default function Profile() {
 
   const { user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
 
   const handleClose = () => {
     setIsOpen(false);
@@ -28,26 +24,37 @@ export default function HeaderProfile() {
   
   return (
     <div>
-        <div className="flex text-sm items-center px-3 py-2 space-x-2">
-        <Avatar src={user.avatar_url} />
-        <div>
-          <p className="font-semibold">{user.name}</p>
-          <p className="text-gray-300 capitalize">{user.authRole}</p>
-        </div>
+      <Popover
+      trigger={
+      <div className="flex items-center px-2 space-x-2">
+      <AiOutlineMenu className="w-5 h-5"/>
+      <div>
+        <p>Cài đặt</p>
       </div>
+    </div>}
+      isOpen={isOpen}
+      onClose={handleClose}
+      content={
+        <div>
+        
       <div className="space-y-2">
-        <Link href="/dashboard/post/add">
-          <Button className="w-full text-sm">
-            <TextIcon LeftIcon={AiOutlineUpload}>Đăng tin</TextIcon>
-          </Button>
-        </Link>
         <Link href={`/users/${user.username}`}>
           <Button className="w-full text-sm">
             <TextIcon LeftIcon={AiOutlineUser}>Hồ sơ</TextIcon>
           </Button>
         </Link>
+        <Link href="/dashboard">
+          <Button className="w-full text-sm">
+            <TextIcon LeftIcon={AiOutlineUpload}>Bảng điều khiển</TextIcon>
+          </Button>
+        </Link>
         <LogoutButton />
       </div>
       </div>
+      }
+      
+>
+  </Popover>
+    </div>
   );
 };

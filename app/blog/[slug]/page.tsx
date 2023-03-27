@@ -27,7 +27,7 @@ export default async function Post({
   const imageUrls = post?.images ? post.images.split(",") : [];
 
   return (
-    <section className="max-w-3xl">
+    <section>
       <div className="flex flex-wrap gap-5">
       {imageUrls.map((url ,index) => (
         

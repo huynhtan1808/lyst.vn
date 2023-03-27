@@ -9,19 +9,19 @@ type Props = {
   images: string;
 };
 
-const BlogPosts = ({ id, slug, title, images }: Props) => {
+const PostCard = ({ id, slug, title, images }: Props) => {
   return (
         <div 
         key={id}
-        className=""
+        className="py-5 border-b border-gray-200"
         >
         <Link href={`/blog/${slug}`}>
         <Image 
         src={images}
-        alt="abc" 
+        alt={title}
         height='300'
-        width='500'
-        className="object-cover block aspect-[16/9] rounded-md transition-transform duration-400 hover:scale-95"
+        width='620'
+        className="object-cover block rounded"
         />
         <h2 className="font-bold p-2">{title}</h2>
         </Link>
@@ -29,4 +29,4 @@ const BlogPosts = ({ id, slug, title, images }: Props) => {
   );
 };
 
-export default BlogPosts;
+export default PostCard;

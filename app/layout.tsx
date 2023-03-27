@@ -1,5 +1,7 @@
 
 import Navbar from '@/components/NavBar'
+import LeftSidebar from '@/components/shared/LeftSidebar'
+import RightSidebar from '@/components/shared/RightSidebar';
 import ToasterComponents from "../components/ToasterComponents";
 import Error from './error';
 import { UserContextProvider } from '@/contexts/AuthContext';
@@ -23,16 +25,16 @@ export default async function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      
-      <body className="mb-40">
       <UserContextProvider>
-          <Navbar />
-          <ToasterComponents />
-          <main className="mx-auto">
+      <body className='antialiased max-w-5xl mb-40 flex flex-col md:flex-row mt-12 lg:mx-auto'>
+      <ToasterComponents />
+        <LeftSidebar />
+        <main className="flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-4">
           {children}
-          </main>
-      </UserContextProvider>
+        </main>
+        <RightSidebar />
       </body>
+      </UserContextProvider>
     </html>
   )
 }

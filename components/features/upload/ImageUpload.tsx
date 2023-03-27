@@ -24,7 +24,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
         if (!props.fileList?.length) return <FileUploader {...props} />;
 
         return (
-          <div className="flex bg-background-100 p-3">
+          <div className="flex bg-background-100">
             {props.fileList.map((file, index) => {
               const key = randomString(8);
 

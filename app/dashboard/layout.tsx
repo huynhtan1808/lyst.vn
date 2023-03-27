@@ -1,4 +1,4 @@
-import Sidebar from "@/components/features/DashboardSidebar";
+import Sidebar from "@/components/shared/LeftSidebar";
 
 export default async function BlogLayout({
     children,
@@ -6,11 +6,6 @@ export default async function BlogLayout({
     children: React.ReactNode;
   }) {
     return (
-      <main className="max-w-6xl mx-auto my-10">
-        <div className="flex h-screen">
-          <Sidebar />
-          <div className="flex-1 p-6">{children}</div>
-        </div>
-      </main>
+      <main>{children}</main>
     )
   }

@@ -1,7 +1,7 @@
 
 import Link from 'next/link'
 import { supabaseClient } from '../../lib/supabase-browser'
-import BlogPosts from '@/components/shared/Posts'
+import BlogPosts from '@/components/shared/PostCard'
 import Swiper, { SwiperSlide } from "@/components/shared/Swiper";
 
 export const revalidate = 0
@@ -17,7 +17,6 @@ export default async function Posts() {
   }
   return (
     <>
-    <h1 className='text-3xl font-bold'>Blog</h1>
     <div>
     <Swiper
        slidesPerView={4}

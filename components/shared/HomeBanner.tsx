@@ -56,7 +56,7 @@ const MobileHomeBanner: React.FC<HomeBannerProps> = () => {
 
   return (
     <React.Fragment>
-    <div className="group relative w-full overflow-hidden h-[450px] xl:h-[500px] 2xl:h-[550px]">
+    <div className="group relative w-full overflow-hidden h-[350px] xl:h-[300px] 2xl:h-[350px]">
       <AnimatePresence>
           <motion.div
             variants={bannerVariants}
@@ -108,7 +108,7 @@ const DesktopHomeBanner: React.FC<HomeBannerProps> = () => {
 
   return (
     <React.Fragment>
-      <div className="group relative w-full overflow-hidden md:h-[350px] xl:h-[400px] 2xl:h-[450px]">
+      <div className="group relative w-full overflow-hidden md:h-[250px] xl:h-[300px] 2xl:h-[350px]">
         <AnimatePresence>
             <motion.div
                 variants={bannerVariants}
@@ -133,9 +133,9 @@ const DesktopHomeBanner: React.FC<HomeBannerProps> = () => {
             animate="animate"
             initial="initial"
             key="{title}"
-            className="h-[350px] xl:h-[400px] 2xl:h-[450px] px-4 flex mx-auto max-w-6xl items-center translate-y-0"
+            className="h-[250px] xl:h-[300px] 2xl:h-[350px] px-4 flex mx-auto max-w-6xl items-center translate-y-0"
         >
-          <h1 className="text-2xl text-white font-bold line-normal line-clamp-2 sm:line-clamp-3 md:text-4xl md:line-clamp-4">
+          <h1 className="text-lg text-white font-bold line-normal line-clamp-2 sm:line-clamp-3 md:text-4xl md:line-clamp-4">
             Nền tảng Mua – Bán – Cho Thuê Bất Động Sản<br/>hàng đầu Việt Nam
           </h1>
         </motion.div>

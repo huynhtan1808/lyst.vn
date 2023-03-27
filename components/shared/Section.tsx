@@ -15,7 +15,6 @@ const Section = React.forwardRef<HTMLDivElement, SectionProps>(
       <div
         ref={ref}
         className={classNames(
-          hasPadding && "px-4 md:px-12 lg:px-20 xl:px-28 2xl:px-36",
           className
         )}
       >
