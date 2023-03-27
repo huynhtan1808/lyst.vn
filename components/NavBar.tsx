@@ -34,18 +34,18 @@ const Navbar = (props: Props) => {
   // links
   const links: NavLinkProps[] = [
     {
-      title: "Home",
+      title: "Trang chủ",
       href: "/",
     },
     {
-      title: "Blog",
+      title: "Cho thuê",
       href: "/blog",
     },
   ];
 
   return (
-    <div className="border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-4 lg:px-0">
+    <div className="shadow">
+      <div className="max-w-6xl mx-auto py-1 px-4">
         <nav className="sticky-nav flex flex-row justify-between">
         <div className="flex items-center space-x-3">
         <svg id="svgLogo" xmlns="http://www.w3.org/2000/svg" width="38px" height="38px" viewBox="-10 0 80 65">
@@ -66,7 +66,7 @@ const Navbar = (props: Props) => {
           <div className="flex items-center space-x-2">
             <Link href={"/login"}>
                 <Button className="">
-                  <p className="line-clamp-1">Login</p>
+                  <p className="line-clamp-1">Đăng nhập</p>
                 </Button>
             </Link>
           </div>

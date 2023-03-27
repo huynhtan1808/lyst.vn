@@ -1,6 +1,7 @@
 
 import Navbar from '@/components/NavBar'
 import ToasterComponents from "../components/ToasterComponents";
+import Error from './error';
 import { UserContextProvider } from '@/contexts/AuthContext';
 import type { Database } from '../db_types';
 import type { SupabaseClient } from '@supabase/auth-helpers-nextjs';
@@ -16,8 +17,6 @@ export default async function RootLayout({
 }) {
 
   return (
-  
-    
     <html lang="en">
       {/*
         <head /> will contain the components returned by the nearest parent
@@ -35,6 +34,5 @@ export default async function RootLayout({
       </UserContextProvider>
       </body>
     </html>
-    
   )
 }

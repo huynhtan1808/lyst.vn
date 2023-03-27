@@ -1,3 +1,5 @@
+import Sidebar from "@/components/features/DashboardSidebar";
+
 export default async function BlogLayout({
     children,
   }: {
@@ -5,7 +7,10 @@ export default async function BlogLayout({
   }) {
     return (
       <main className="max-w-6xl mx-auto my-10">
-            {children}
+        <div className="flex h-screen">
+          <Sidebar />
+          <div className="flex-1 p-6">{children}</div>
+        </div>
       </main>
     )
   }

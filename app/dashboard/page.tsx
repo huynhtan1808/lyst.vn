@@ -7,10 +7,6 @@ export default function Dashboard() {
     
     const router = useRouter();
     const { user }  = useUser();
-  
-    if (!user) {
-      router.push('/');
-    }
     
     return (
     <div className=''>

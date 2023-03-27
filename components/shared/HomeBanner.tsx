@@ -56,7 +56,7 @@ const MobileHomeBanner: React.FC<HomeBannerProps> = () => {
 
   return (
     <React.Fragment>
-    <div className="group relative w-full overflow-hidden md:h-[450px] xl:h-[500px] 2xl:h-[550px]">
+    <div className="group relative w-full overflow-hidden h-[450px] xl:h-[500px] 2xl:h-[550px]">
       <AnimatePresence>
           <motion.div
             variants={bannerVariants}
@@ -119,7 +119,7 @@ const DesktopHomeBanner: React.FC<HomeBannerProps> = () => {
                 key="{title}"
             >
               <Image
-                src="https://res.cloudinary.com/dld0jgbne/image/upload/v1679650976/local-uploads/ms3ge09uzhneexgqpv1l.webp"
+                src="/banner.jpg"
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 35%"
@@ -133,10 +133,10 @@ const DesktopHomeBanner: React.FC<HomeBannerProps> = () => {
             animate="animate"
             initial="initial"
             key="{title}"
-            className="md:h-[350px] xl:h-[400px] 2xl:h-[450px] flex mx-auto max-w-6xl items-center translate-y-0"
+            className="h-[350px] xl:h-[400px] 2xl:h-[450px] px-4 flex mx-auto max-w-6xl items-center translate-y-0"
         >
-          <h1 className="text-2xl text-white font-bold uppercase line-clamp-2 sm:line-clamp-3 md:text-4xl md:line-clamp-4">
-            LYST
+          <h1 className="text-2xl text-white font-bold line-normal line-clamp-2 sm:line-clamp-3 md:text-4xl md:line-clamp-4">
+            Nền tảng Mua – Bán – Cho Thuê Bất Động Sản<br/>hàng đầu Việt Nam
           </h1>
         </motion.div>
       </div>

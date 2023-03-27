@@ -49,32 +49,32 @@ const Swiper: React.FC<SwiperProps> = ({
       }}
       breakpoints={{
         1536: {
-          slidesPerView: 1,
+          slidesPerView: 5,
           slidesPerGroup: 1,
           spaceBetween: 20,
         },
         1280: {
-          slidesPerView:1,
+          slidesPerView:4,
           slidesPerGroup: 1,
           spaceBetween: 20,
         },
         1024: {
-          slidesPerView: 1,
+          slidesPerView: 3,
           slidesPerGroup: 1,
           spaceBetween: 20,
         },
         768: {
-          slidesPerView: 1,
+          slidesPerView: 3,
           slidesPerGroup: 1,
           spaceBetween: 20,
         },
         640: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           slidesPerGroup: 1,
           spaceBetween: 10,
         },
         0: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           slidesPerGroup: 1,
           spaceBetween: 10,
         },

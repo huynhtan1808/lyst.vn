@@ -34,22 +34,22 @@ export default function HeaderProfile() {
       onClose={handleClose}
       content={
         <div>
-        <div className="flex items-center px-3 py-2 space-x-2">
+        <div className="flex text-sm items-center px-3 py-2 space-x-2">
         <Avatar src={user.avatar_url} />
         <div>
           <p className="font-semibold">{user.name}</p>
-          <p className="text-gray-300 text-sm">User</p>
+          <p className="text-gray-300 capitalize">{user.authRole}</p>
         </div>
       </div>
       <div className="space-y-2">
         <Link href={`/users/${user.username}`}>
-          <Button className="w-full">
-            <TextIcon LeftIcon={AiOutlineUser}>Profile</TextIcon>
+          <Button className="w-full text-sm">
+            <TextIcon LeftIcon={AiOutlineUser}>Hồ sơ</TextIcon>
           </Button>
         </Link>
         <Link href="/dashboard">
-          <Button className="w-full">
-            <TextIcon LeftIcon={AiOutlineUpload}>Dashboard</TextIcon>
+          <Button className="w-full text-sm">
+            <TextIcon LeftIcon={AiOutlineUpload}>Bảng điều khiển</TextIcon>
           </Button>
         </Link>
         <LogoutButton />

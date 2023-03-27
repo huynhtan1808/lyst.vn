@@ -29,7 +29,7 @@ const PopoverComponent = ({ trigger, content, position = "bottom" }: PopoverProp
         {
           name: "offset",
           options: {
-            offset: [0, 10],
+            offset: [0, 8],
           },
         },
       ],

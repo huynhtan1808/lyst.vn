@@ -11,14 +11,17 @@ type Props = {
 
 const BlogPosts = ({ id, slug, title, images }: Props) => {
   return (
-        <div key={id}>
+        <div 
+        key={id}
+        className=""
+        >
         <Link href={`/blog/${slug}`}>
         <Image 
         src={images}
         alt="abc" 
         height='300'
         width='500'
-        className="object-cover block aspect-[16/9] rounded-md transition-transform duration-400 photo-zoom"
+        className="object-cover block aspect-[16/9] rounded-md transition-transform duration-400 hover:scale-95"
         />
         <h2 className="font-bold p-2">{title}</h2>
         </Link>

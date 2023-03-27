@@ -1,3 +1,5 @@
+"use client"
+
 import classNames from "classnames";
 import React from "react";
 import BaseButton, { BaseButtonProps } from "@/components/shared/BaseButton";

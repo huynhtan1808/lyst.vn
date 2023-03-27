@@ -29,22 +29,22 @@ export default async function Posts() {
            spaceBetween: 20,
          },
          1280: {
-           slidesPerView: 3.2,
+           slidesPerView: 4.2,
            slidesPerGroup: 1,
            spaceBetween: 20,
          },
          1024: {
-           slidesPerView: 3.2,
+           slidesPerView: 4.2,
            slidesPerGroup: 3,
            spaceBetween: 20,
          },
          768: {
-           slidesPerView: 2.2,
+           slidesPerView: 3.2,
            slidesPerGroup: 2,
            spaceBetween: 20,
          },
          0: {
-           slidesPerView: 1.2,
+           slidesPerView: 2.2,
            slidesPerGroup: 1,
            spaceBetween: 10,
          },

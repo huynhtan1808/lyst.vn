@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import React, { useCallback, useState } from "react";
 import NextImage, { ImageProps as NextImageProps } from "next/image";
@@ -25,7 +25,7 @@ const Image: React.FC<ImageProps> = ({ onLoadingComplete, ...props }) => {
 
   const handleLoadingComplete: NextImageProps["onLoadingComplete"] =
     useCallback(
-      (result : any ) => {
+      (result:any) => {
         setIsLoaded(true);
 
         onLoadingComplete?.(result);
