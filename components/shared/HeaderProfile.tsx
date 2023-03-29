@@ -1,14 +1,8 @@
 'use client';
 
-import { useState } from "react";
-import Link from "next/link";
 import { useUser } from '@/contexts/AuthContext';
 import Avatar from "@/components/shared/Avatar";
-import LogoutButton from "../LogoutButton";
-import Button from "@/components/shared/Button";
-import TextIcon from "@/components/shared/TextIcon";
-import { AiOutlineUpload, AiOutlineUser } from "react-icons/ai";
-import Popover from "@/components/shared/Popup";
+
 
 
 export default function HeaderProfile() {

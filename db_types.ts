@@ -60,7 +60,7 @@ export interface Database {
           avatar_url?: string | null
           bannerUrl?: string | null
           name?: string | null
-          username?: string | null
+          username?: string 
           bio?: string | null
         }
         Update: {
@@ -70,7 +70,7 @@ export interface Database {
           avatar_url?: string | null
           bannerUrl?: string | null
           name?: string | null
-          username?: string | null
+          username?: string 
           bio?: string | null
         }
       }

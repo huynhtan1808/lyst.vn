@@ -43,7 +43,7 @@ export default function Profile() {
       content={
       <div>
       <div className="space-y-2">
-        <Link href={`/users/${user.username}`}>
+        <Link href={`/user/${user.username}`}>
           <Button className="w-full">
             <TextIcon LeftIcon={AiOutlineUser}>Hồ sơ</TextIcon>
           </Button>

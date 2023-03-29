@@ -23,12 +23,6 @@ const items = [
     href: '/blog',
   },
   {
-    icon: AiOutlineUser,
-    label: 'Hồ sơ',
-    href: `/dashboard`,
-    auth: true,
-  },
-  {
     icon: AiOutlinePlusCircle,
     label: 'Đăng tin',
     href: `/dashboard/post/add`,

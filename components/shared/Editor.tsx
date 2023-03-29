@@ -1,5 +1,5 @@
+"use client"
 
-import { useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
@@ -21,12 +21,12 @@ import {
 type Props = {
   description: string | null;
   setDescription?: (content: string) => void;
+  placeholder?: string;
+  readOnly?: boolean;
+  className: string | null;
 };
 
-const Editor = ({ description, setDescription } : Props) => {
-
-  const [selectedOption, setSelectedOption] = useState("");
-
+const Editor = ({ description, setDescription, readOnly, className, placeholder } : Props) => {
 
   const sampleDesc = `Describe your product in 4-5 bullet points...
     Point #1: this is an explanation of my product.
@@ -37,7 +37,9 @@ const Editor = ({ description, setDescription } : Props) => {
       StarterKit,
       Underline,
       Placeholder.configure({
-        placeholder: sampleDesc,
+        placeholder,
+        emptyNodeClass:
+          "first:before:h-0 first:before:text-gray-500 first:before:float-left first:before:content-[attr(data-placeholder)] first:before:pointer-events-none",
       }),
     ],
     content: description,
@@ -50,17 +52,25 @@ const Editor = ({ description, setDescription } : Props) => {
     editorProps: {
       attributes: {
         class: classNames(
-          "!max-w-full prose prose-sm focus:outline-none focus:border-none min-h-[5rem]"
+          "!max-w-full prose prose-sm focus:outline-none focus:border-none min-h-[5rem]",
+          !readOnly && "min-h-[2rem]",
         ),
       },
     },
+    editable: !readOnly,
   });
+  [placeholder, readOnly]
 
   return (
-    <div className='border border-gray-300 rounded-md'>
+    <div 
+      className={classNames(!readOnly && "border border-gray-200", className)}
+      >
       <EditorContent 
       className={classNames("p-2")}
-      editor={editor} />
+      editor={editor}
+      />
+      
+      {!readOnly && (
       <div className="p-2 flex flex-col md:flex-row justify-between border-t gap-2 border-gray-300">
             <div className="flex items-center md:gap-2 flex-wrap">
               <CircleButton
@@ -118,6 +128,7 @@ const Editor = ({ description, setDescription } : Props) => {
               />
             </div>
         </div>
+      )}
     </div>
   );
 };
