@@ -28,10 +28,6 @@ type Props = {
 
 const Editor = ({ description, setDescription, readOnly, className, placeholder } : Props) => {
 
-  const sampleDesc = `Describe your product in 4-5 bullet points...
-    Point #1: this is an explanation of my product.
-    Point #2: ....`;
-
   const editor = useEditor({
     extensions: [
       StarterKit,

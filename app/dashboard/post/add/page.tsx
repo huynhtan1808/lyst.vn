@@ -93,8 +93,9 @@ export default function AddPost() {
         />
         <label htmlFor="Description">Mô tả</label>
         <Editor
-            description={description}
-            setDescription={setDescription}
+          className=""
+          description={description}
+          setDescription={setDescription}
         />
         <div>
         <Button
