@@ -1,8 +1,6 @@
 
-import Link from 'next/link'
 import { supabaseClient } from '../../lib/supabase-browser'
-import BlogPosts from '@/components/shared/PostCard'
-import Swiper, { SwiperSlide } from "@/components/shared/Swiper";
+import PostCardFeed from '@/components/shared/PostCardFeed'
 
 export const revalidate = 0
 
@@ -16,56 +14,23 @@ export default async function Posts() {
     return <p>No posts found.</p>
   }
   return (
-    <>
-    <div>
-    <Swiper
-       slidesPerView={4}
-       slidesPerGroup={1}
-       breakpoints={{
-         1536: {
-           slidesPerView: 4.2,
-           slidesPerGroup: 1,
-           spaceBetween: 20,
-         },
-         1280: {
-           slidesPerView: 4.2,
-           slidesPerGroup: 1,
-           spaceBetween: 20,
-         },
-         1024: {
-           slidesPerView: 4.2,
-           slidesPerGroup: 3,
-           spaceBetween: 20,
-         },
-         768: {
-           slidesPerView: 3.2,
-           slidesPerGroup: 2,
-           spaceBetween: 20,
-         },
-         0: {
-           slidesPerView: 2.2,
-           slidesPerGroup: 1,
-           spaceBetween: 10,
-         },
-        }}
-      >
+  <>
+  <h2 className="text-xl font-bold">Khám phá</h2>
+  <div className="mt-5">
       {posts.map((post: any) => {
       const imageUrls = post.images ? post.images.split(",") : [];
       const imageUrl = imageUrls.shift();
       return (
-        <SwiperSlide  key={post.id}>
-        <BlogPosts
+        <PostCardFeed
           key={post.id}
           id={post.id}
           images={imageUrl}
           title={post.title}
           slug={post.slug}
         />
-        </SwiperSlide>
-    )
-  })}
-  </Swiper>
-  </div>
+        )
+        })}
+      </div>
   </>
   )
 }

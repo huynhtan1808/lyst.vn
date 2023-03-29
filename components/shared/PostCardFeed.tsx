@@ -13,20 +13,19 @@ const PostCard = ({ id, slug, title, images }: Props) => {
   return (
         <div 
         key={id}
-        className="py-5"
+        className="py-5 border-t border-gray-200"
         >
         <Link href={`/blog/${slug}`}>
-          <div className="w-28 h-28">
+          <div>
             <Image
               src={images}
               alt={title}
-              layout="fill"
-              objectFit="cover"
-              unoptimized
-              className="rounded w-28 h-28"
+              width={"620"}
+              height={"500"}
+              className="rounded"
             />
           </div>
-        <h2 className="text-sm p-2">{title}</h2>
+        <h2 className="py-2">{title}</h2>
         </Link>
     </div>
   );

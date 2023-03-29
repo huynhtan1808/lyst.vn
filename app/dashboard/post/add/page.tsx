@@ -78,8 +78,9 @@ export default function AddPost() {
   }
 
   return (
-    <div className="">
-      <UploadContainer className="pb-12" isVerified={user?.isVerified}>
+    <div>
+      <h2 className="text-xl font-bold">Đăng tin mới</h2>
+      <UploadContainer className="py-4" isVerified={user?.isVerified}>
       <div>
       <form className="mt-3" onSubmit={handleFormSubmit}>
         <ImageUpload onChange={setSelectedImages} />

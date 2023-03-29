@@ -39,14 +39,14 @@ export const FileBox: React.FC<FileBoxProps> = ({
   onFileUpdate,
   index,
 }) => (
-  <div className="p-2 w-40 h-40 flex items-end relative bg-background-900 rounded-md">
+  <div className="p-2 w-40 h-40 flex items-end relative bg-gray-100 rounded-md">
     <AiOutlineFile className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-16 h-16" />
 
     <p className="text-sm line-clamp-1">{file.name}</p>
 
     <p className="absolute top-2 left-2">{humanFileSize(file.size)}</p>
 
-    <div className="bg-background-800 absolute -top-2 -right-2 flex items-center">
+    <div className="bg-gray-100 absolute -top-2 -right-2 flex items-center">
       {onFileUpdate && (
         <Button
           secondary
@@ -79,21 +79,21 @@ export const FileUploader: React.FC<ExportInterface> = ({
   return (
     <div
       className={classNames(
-        "p-4 w-full rounded-md border border-dashed border-white/60 flex flex-col items-center justify-center transition duration-300",
-        isDragging ? "bg-white/20" : "bg-background-900"
+        "p-4 w-full rounded-md border border-dashed border-gray-300 flex flex-col items-center justify-center transition duration-300",
+        isDragging ? "bg-white/20" : "bg-gray-100"
       )}
       {...dragProps}
     >
       <AiOutlineCloudUpload className="text-gray-300 w-24 h-24" />
 
       <p className="text-gray-300">
-        drag_and_drop common:or {" "}
+        Kéo và thả hoặc {" "}
         <button
-          className="text-primary-300 hover:underline"
+          className="text-gray-400 hover:text-gray-300"
           onClick={onFileUpload}
           type="button"
         >
-          browse_files
+          Chọn ảnh
         </button>{" "}
       </p>
     </div>
@@ -124,7 +124,7 @@ export const FileUploadedList: React.FC<FileUploadingUIProps> = ({
           LeftIcon={AiFillFileAdd}
           onClick={onFileUpload}
           className="flex items-center justify-center w-40 h-40 border border-dashed border-gray-300 hover:border-white bg-transparent"
-          iconClassName="w-16 h-16"
+          iconClassName="w-10 h-10"
         />
       )}
     </div>

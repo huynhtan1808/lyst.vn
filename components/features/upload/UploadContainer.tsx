@@ -14,15 +14,14 @@ const UploadContainer: React.FC<UploadContainerProps> = ({
     <Section {...props}>
       {!isVerified ? (
         <div className="space-y-2">
-          <p className="text-center text-2xl">
-            Bạn cần phải{" "}
+          <p className="text-center">
             <a
-              href="/"
+              href="/login"
               className="hover:underline text-primary-300"
               target="_blank"
               rel="noreferrer"
             >
-              đăng ký
+              Đăng ký ngay
             </a>{" "}
             để được đăng bài.
           </p>

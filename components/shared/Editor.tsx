@@ -57,7 +57,7 @@ const Editor = ({ description, setDescription } : Props) => {
   });
 
   return (
-    <div className='border border-gray-300'>
+    <div className='border border-gray-300 rounded-md'>
       <EditorContent 
       className={classNames("p-2")}
       editor={editor} />

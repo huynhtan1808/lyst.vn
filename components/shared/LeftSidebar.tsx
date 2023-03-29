@@ -5,16 +5,18 @@ import Link from 'next/link';
 import { LayoutGroup, motion } from 'framer-motion';
 import classNames from 'classnames';
 import Profile from './Profile';
+import Button from './Button';
+import TextIcon from './TextIcon';
 
 const navItems = {
   '/': {
-    name: 'Feed',
+    name: 'Trang chủ',
   },
   '/blog': {
-    name: 'Blog',
+    name: 'Khám phá',
   },
   '/dashboard': {
-    name: 'Dashboard',
+    name: 'Hồ sơ',
   },
 };
 
@@ -70,14 +72,14 @@ export default function LeftSidebar() {
   }
 
   return (
-    <aside className="md:w-[250px] md:min-h-screen border-r border-gray-200 md:flex-shrink-0 md:mx-0 md:px-0">
-      <div className="lg:fixed flex flex-row md:flex-col justify-between">
+    <aside className="text-lg col-span-1 border-r border-gray-200">
+      <div className="lg:fixed flex flex-col md:h-full md:w-[260px] justify-between px-6 py-6">
         <div>
-        <div className="mb-2 px-4 py-2 md:mb-8 space-y-10 flex flex-col md:flex-row items-start">
-          <Logo />
-        </div>
-        <nav
-            className="flex flex-row md:flex-col items-start relative px-4 md:px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+          <div className="px-3 py-2 md:mb-8 space-y-10">
+            <Logo />
+          </div>
+          <nav
+            className="flex flex-row md:flex-col items-start relative px-4 md:px-0 pb-0"
             id="nav"
           >
             <div className="flex flex-row md:flex-col space-x-0 mb-2 mt-2 md:mt-0">
@@ -88,10 +90,10 @@ export default function LeftSidebar() {
                     key={path}
                     href={path}
                     className={classNames(
-                      'transition-all hover:text-orange-500 flex align-middle',
+                      'transition-all hover:text-primary flex align-middle',
                       {
                         'text-gray-900': !isActive,
-                        'font-bold text-orange-600': isActive,
+                        'font-bold text-primary': isActive,
                       }
                     )}
                   >
@@ -113,6 +115,11 @@ export default function LeftSidebar() {
                 );
               })}
             </div>
+            <Link href={"/dashboard/post/add"} className="mt-8">
+              <Button primary>
+                <TextIcon>Đăng tin</TextIcon>
+              </Button>
+            </Link>
           </nav>
         </div>
         <div><Profile/></div>

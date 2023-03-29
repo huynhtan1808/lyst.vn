@@ -24,7 +24,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
         if (!props.fileList?.length) return <FileUploader {...props} />;
 
         return (
-          <div className="flex bg-background-100">
+          <div className="flex bg-background-100 items-center gap-4">
             {props.fileList.map((file, index) => {
               const key = randomString(8);
 
@@ -42,12 +42,12 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
                     />
                   </div>
 
-                  <div className="bg-background-100 absolute top-0 right-0 flex items-center">
+                  <div className="bg-transparent absolute top-0 right-0 flex items-center">
                     <Button
                       secondary
                       onClick={() => props.onFileUpdate(index)}
                       LeftIcon={AiOutlineEdit}
-                      iconClassName="w-6 h-6"
+                      iconClassName="w-4 h-4 text-gray-600"
                       className="!p-1"
                     />
 
@@ -55,7 +55,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
                       secondary
                       onClick={() => props.onFileRemove(index)}
                       LeftIcon={AiOutlineDelete}
-                      iconClassName="text-red-500 w-6 h-6"
+                      iconClassName="text-red-500 w-4 h-4"
                       className="!p-1"
                     />
                   </div>
@@ -66,8 +66,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
             <BaseButton
               LeftIcon={AiFillFileAdd}
               onClick={props.onFileUpload}
-              className="relative aspect-w-9 aspect-h-14 col-span-1 border border-dashed border-gray-300 hover:border-white bg-transparent"
-              iconClassName="w-16 h-16 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+              className="relative w-10 h-14 col-span-1 border border-dashed border-gray-300 hover:border-white bg-transparent"
+              iconClassName="w-10 h-10 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
             />
           </div>
         );

@@ -34,7 +34,7 @@ const LogoutButton = (props: Props) => {
   return (
     <div>
       <Button
-      className="w-full text-sm text-red-500"
+      className="w-full text-red-500"
       onClick={logout}
       >
         <TextIcon LeftIcon={HiOutlineLogout}>Đăng xuất</TextIcon>

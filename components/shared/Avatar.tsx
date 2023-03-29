@@ -26,7 +26,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, className, ...props }) => {
         onError={handleImageError}
         src={isLoadFailed || !src ? "/fallback_profile.png" : src}
         alt="avatar"
-        className="rounded-full border border-orange-500"
+        className="rounded-full border border-primary"
         width={"50"}
         height={"50"}
       />

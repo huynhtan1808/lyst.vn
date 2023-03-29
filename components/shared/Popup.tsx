@@ -50,8 +50,8 @@ const PopoverComponent = ({ trigger, content, position = "bottom" }: PopoverProp
           <Popover.Button
             ref={buttonRef}
             className={`${
-              open ? "text-orange-500" : "text-gray-900"
-            } flex items-center justify-between w-full py-2 text-sm font-medium text-left bg-white focus:outline-none`}
+              open ? "text-primary" : "text-gray-900"
+            } flex items-center justify-between w-full py-2 font-medium text-left bg-white focus:outline-none`}
             onMouseEnter={() => {
               createPopperInstance();
               setIsOpen(true);
@@ -74,7 +74,7 @@ const PopoverComponent = ({ trigger, content, position = "bottom" }: PopoverProp
           >
             <Popover.Panel
               static
-              className="absolute z-10 w-[250px] bottom-10 bg-white rounded shadow-lg mt-1"
+              className="absolute z-10 w-[250px] bottom-12 bg-white rounded shadow-lg"
               ref={popupRef}
             >
               {content}

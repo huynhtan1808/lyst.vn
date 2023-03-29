@@ -26,8 +26,8 @@ export default function Profile() {
     <div>
       <Popover
       trigger={
-      <div className="flex items-center px-2 space-x-2">
-      <AiOutlineMenu className="w-5 h-5"/>
+      <div className="flex items-center px-2 space-x-2 text-lg">
+      <AiOutlineMenu className="w-6 h-6"/>
       <div>
         <p>Cài đặt</p>
       </div>
@@ -35,16 +35,15 @@ export default function Profile() {
       isOpen={isOpen}
       onClose={handleClose}
       content={
-        <div>
-        
+      <div>
       <div className="space-y-2">
         <Link href={`/users/${user.username}`}>
-          <Button className="w-full text-sm">
+          <Button className="w-full">
             <TextIcon LeftIcon={AiOutlineUser}>Hồ sơ</TextIcon>
           </Button>
         </Link>
         <Link href="/dashboard">
-          <Button className="w-full text-sm">
+          <Button className="w-full">
             <TextIcon LeftIcon={AiOutlineUpload}>Bảng điều khiển</TextIcon>
           </Button>
         </Link>

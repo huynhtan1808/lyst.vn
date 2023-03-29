@@ -26,13 +26,20 @@ export default async function RootLayout({
       */}
       <head />
       <UserContextProvider>
-      <body className='antialiased max-w-5xl mb-40 flex flex-col md:flex-row mt-12 lg:mx-auto'>
+      <body className='max-w-6xl mb-40 flex flex-col md:flex-row lg:mx-auto'>
       <ToasterComponents />
-        <LeftSidebar />
-        <main className="flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-4">
-          {children}
-        </main>
-        <RightSidebar />
+        <div className="h-screen">
+        <div className="container h-full mx-auto xl:px-30 max-w-6xl">
+          <div className="grid grid-cols-4 h-full">
+          <LeftSidebar />
+            <main 
+              className="col-span-3 lg:col-span-2 px-4 my-6">
+              {children}
+            </main>
+            <RightSidebar />
+          </div>
+          </div>
+          </div>
       </body>
       </UserContextProvider>
     </html>

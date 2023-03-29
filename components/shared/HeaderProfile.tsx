@@ -14,18 +14,8 @@ import Popover from "@/components/shared/Popup";
 export default function HeaderProfile() {
 
   const { user } = useUser();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
   if (!user) return null;
-  
+
   return (
     <div>
         <div className="flex text-sm items-center px-3 py-2 space-x-2">
@@ -35,19 +25,7 @@ export default function HeaderProfile() {
           <p className="text-gray-300 capitalize">{user.authRole}</p>
         </div>
       </div>
-      <div className="space-y-2">
-        <Link href="/dashboard/post/add">
-          <Button className="w-full text-sm">
-            <TextIcon LeftIcon={AiOutlineUpload}>Đăng tin</TextIcon>
-          </Button>
-        </Link>
-        <Link href={`/users/${user.username}`}>
-          <Button className="w-full text-sm">
-            <TextIcon LeftIcon={AiOutlineUser}>Hồ sơ</TextIcon>
-          </Button>
-        </Link>
-        <LogoutButton />
       </div>
-      </div>
+      
   );
 };

@@ -1,5 +1,7 @@
-import { createServerClient } from '@/lib/supabase-server';
-import PostCard from '@/components/shared/PostCard'
+import { createServerClient } from '@/lib/supabase-server'
+import PostCardFeed from '@/components/shared/PostCardFeed'
+import PostSwiper from '@/components/shared/PostSwiper'
+import AddPost from './dashboard/post/add/page'
 
 export const revalidate = 0
 
@@ -14,21 +16,25 @@ export default async function Home() {
 
   return (
     <>
+    <PostSwiper />
+    <div className="mt-5">
+      <AddPost/>
+    </div>
     <div className="mt-5">
       {posts.map((post: any) => {
       const imageUrls = post.images ? post.images.split(",") : [];
       const imageUrl = imageUrls.shift();
       return (
-        <PostCard
+        <PostCardFeed
           key={post.id}
           id={post.id}
           images={imageUrl}
           title={post.title}
           slug={post.slug}
         />
-    )
-  })}
-  </div>
-  </>
+        )
+        })}
+      </div>
+    </>
   )
 }

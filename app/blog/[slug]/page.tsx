@@ -30,7 +30,6 @@ export default async function Post({
     <section>
       <div className="flex flex-wrap gap-5">
       {imageUrls.map((url ,index) => (
-        
         <div key={index}>
           <Image 
             src={url}
