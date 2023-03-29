@@ -84,9 +84,9 @@ function Logo() {
 export default function LeftSidebar() {
 
   return (
-    <aside className="col-span-1 h-full pr-0 md:pr-6">
-      <div className="flex flex-col fixed h-screen items-end justify-between">
-        <div className="space-y-2 lg:w-[230px] py-4">
+    <aside className="col-span-1 h-full pr-0 md:pr-6 border-r border-gray-200">
+      <div className="flex flex-col fixed h-screen items-end justify-between py-4">
+        <div className="space-y-2 lg:w-[230px]">
           <div className="p-4">
             <Logo/>
           </div>
@@ -102,7 +102,7 @@ export default function LeftSidebar() {
             ))}
             </nav>
         </div>
-        <div className="space-y-2 lg:w-[230px] py-4">
+        <div className="space-y-2 lg:w-[230px]">
           <Profile/>
         </div>
       </div>

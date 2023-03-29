@@ -40,19 +40,23 @@ export interface Database {
       },
       users: {
         Row: {
-          id: string | null
-          authRole: string | null
-          isVerified: boolean | null
-          avatar_url: string | null
-          bannerUrl: string | null
-          name: string | null
-          username: string | null
-          bio: string | null
+          id: string 
+          authRole: string 
+          isVerified: boolean 
+          avatar_url: string 
+          bannerUrl: string 
+          name: string
+          username: string
+          bio: string 
+          app_metadata: []
+          user_metadata: [] 
+          aud: string 
+          created_at: string 
         }
         Insert: {
-          id?: string | null
+          id?: string 
           authRole?: string | null
-          isVerified?: boolean | null
+          isVerified?: boolean 
           avatar_url?: string | null
           bannerUrl?: string | null
           name?: string | null

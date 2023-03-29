@@ -45,6 +45,7 @@ export const UserContextProvider = (props: Props) => {
   
   // Check if user session is invalid
   useEffect(() => {
+    const currentDate = new Date();
     const session = supabase.auth.getSession();
 
     if (!session) {
@@ -64,7 +65,7 @@ export const UserContextProvider = (props: Props) => {
       if (!user) return;
 
       const { data: profileUser } = await supabase
-        .from<UserDetails | null>("users")
+        .from("users")
         .select("*")
         .eq("id", user?.id)
         .single();
@@ -117,8 +118,6 @@ export const UserContextProvider = (props: Props) => {
         maxAge: 604800,
       });
     });
-
-    return data.unsubscribe;
   }, []);
 
   
