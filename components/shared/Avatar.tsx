@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import Image from "@/components/shared/Image";
 import classNames from "classnames";
@@ -17,7 +19,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, className, ...props }) => {
   return (
     <div
       className={classNames(
-        "rounded-full",
+        "shrink-0 relative w-10 h-10 rounded-full",
         className
       )}
       {...props}
@@ -26,9 +28,8 @@ const Avatar: React.FC<AvatarProps> = ({ src, className, ...props }) => {
         onError={handleImageError}
         src={isLoadFailed || !src ? "/fallback_profile.png" : src}
         alt="avatar"
-        className="rounded-full border border-primary"
-        width={"50"}
-        height={"50"}
+        className="rounded-full object-cover"
+        layout="fill"
       />
     </div>
   );
