@@ -74,7 +74,7 @@ const PopoverComponent = ({ trigger, content, position = "bottom" }: PopoverProp
           >
             <Popover.Panel
               static
-              className="absolute z-10 w-[250px] bottom-12 bg-white rounded shadow-lg"
+              className="absolute z-10 w-[250px] bottom-16 bg-white rounded shadow-lg"
               ref={popupRef}
             >
               {content}

@@ -140,7 +140,7 @@ const FileUploadingUI: React.FC<FileUploadingUIProps> = (props) => {
 };
 
 const FileUploading: React.FC<FileUploadingProps> = ({
-  initialFiles,
+  initialFiles = [],
   children,
   onChange,
   ...props

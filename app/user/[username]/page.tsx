@@ -8,10 +8,7 @@ const supabase = supabaseClient();
 
 export async function generateStaticParams() {
   const { data: profiles } = await supabase.from('users').select('username')
-
-  return profiles?.map(({ username }) => ({
-    username,
-  }))
+  return profiles?.map(({ username }) => username) || []
 }
 
 export default async function Profile({ params: { username } }: { params: { username: string } }) {

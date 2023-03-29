@@ -7,8 +7,14 @@ import Avatar from "@/components/shared/Avatar";
 import LogoutButton from "../LogoutButton";
 import Button from "@/components/shared/Button";
 import TextIcon from "@/components/shared/TextIcon";
-import { AiOutlineUpload, AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineControl, AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
 import Popover from "@/components/shared/Popup";
+import SidebarItem from './SidebarItem';
+
+const items = {
+    icon: AiOutlineMenu,
+    label: 'Cài đặt',
+  }
 
 
 export default function Profile() {
@@ -26,12 +32,12 @@ export default function Profile() {
     <div>
       <Popover
       trigger={
-      <div className="flex items-center px-2 space-x-2 text-lg">
-      <AiOutlineMenu className="w-6 h-6"/>
-      <div>
-        <p>Cài đặt</p>
-      </div>
-    </div>}
+          <SidebarItem
+            icon={items.icon} 
+            label={items.label}
+            className="flex flex-row items-center"
+            />
+      }
       isOpen={isOpen}
       onClose={handleClose}
       content={
@@ -44,7 +50,7 @@ export default function Profile() {
         </Link>
         <Link href="/dashboard">
           <Button className="w-full">
-            <TextIcon LeftIcon={AiOutlineUpload}>Bảng điều khiển</TextIcon>
+            <TextIcon LeftIcon={AiOutlineControl}>Bảng điều khiển</TextIcon>
           </Button>
         </Link>
         <LogoutButton />

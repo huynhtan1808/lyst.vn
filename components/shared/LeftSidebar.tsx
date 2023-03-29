@@ -1,24 +1,40 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutGroup, motion } from 'framer-motion';
-import classNames from 'classnames';
+import { motion } from 'framer-motion';
 import Profile from './Profile';
-import Button from './Button';
-import TextIcon from './TextIcon';
+import SidebarItem from './SidebarItem';
 
-const navItems = {
-  '/': {
-    name: 'Trang chủ',
+import { AiOutlinePlusCircle, AiOutlineHome, AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
+
+
+
+
+
+const items = [
+  {
+    icon: AiOutlineHome,
+    label: 'Trang chủ',
+    href: '/',
   },
-  '/blog': {
-    name: 'Khám phá',
+  {
+    icon: AiOutlineSearch,
+    label: 'Khám phá',
+    href: '/blog',
   },
-  '/dashboard': {
-    name: 'Hồ sơ',
+  {
+    icon: AiOutlineUser,
+    label: 'Hồ sơ',
+    href: `/dashboard`,
+    auth: true,
   },
-};
+  {
+    icon: AiOutlinePlusCircle,
+    label: 'Đăng tin',
+    href: `/dashboard/post/add`,
+    auth: true,
+  },
+]
 
 function Logo() {
   return (
@@ -66,63 +82,29 @@ function Logo() {
 }
 
 export default function LeftSidebar() {
-  let pathname = usePathname() || '/';
-  if (pathname.includes('/blog/')) {
-    pathname = '/blog';
-  }
 
   return (
-    <aside className="text-lg col-span-1 border-r border-gray-200">
-      <div className="lg:fixed flex flex-col md:h-full md:w-[260px] justify-between px-6 py-6">
-        <div>
-          <div className="px-3 py-2 md:mb-8 space-y-10">
-            <Logo />
+    <aside className="col-span-1 h-full pr-0 md:pr-6">
+      <div className="flex flex-col fixed h-screen items-end justify-between">
+        <div className="space-y-2 lg:w-[230px] py-4">
+          <div className="p-4">
+            <Logo/>
           </div>
-          <nav
-            className="flex flex-row md:flex-col items-start relative px-4 md:px-0 pb-0"
-            id="nav"
-          >
-            <div className="flex flex-row md:flex-col space-x-0 mb-2 mt-2 md:mt-0">
-              {Object.entries(navItems).map(([path, { name }]) => {
-                const isActive = path === pathname;
-                return (
-                  <Link
-                    key={path}
-                    href={path}
-                    className={classNames(
-                      'transition-all hover:text-primary flex align-middle',
-                      {
-                        'text-gray-900': !isActive,
-                        'font-bold text-primary': isActive,
-                      }
-                    )}
-                  >
-                    <span className="relative py-[5px] px-[10px]">
-                      {name}
-                      {path === pathname ? (
-                        <motion.div
-                          className="absolute inset-0 rounded-md z-[-1]"
-                          layoutId="sidebar"
-                          transition={{
-                            type: 'spring',
-                            stiffness: 350,
-                            damping: 30,
-                          }}
-                        />
-                      ) : null}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-            <Link href={"/dashboard/post/add"} className="mt-8">
-              <Button primary>
-                <TextIcon>Đăng tin</TextIcon>
-              </Button>
-            </Link>
-          </nav>
+            <nav id="nav">
+            {items.map((item) => (
+              <SidebarItem
+                key={item.href}
+                href={item.href} 
+                icon={item.icon} 
+                label={item.label}
+                className="flex flex-row items-center"
+              />
+            ))}
+            </nav>
         </div>
-        <div><Profile/></div>
+        <div className="space-y-2 lg:w-[230px] py-4">
+          <Profile/>
+        </div>
       </div>
     </aside>
   );

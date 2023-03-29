@@ -5,19 +5,30 @@ import { supabaseClient } from '../../lib/supabase-browser'
 import PostCard from '@/components/shared/PostCard'
 import Swiper, { SwiperSlide } from "@/components/shared/Swiper";
 
+interface Post {
+  id: string | null;
+  slug: string | null;
+  title: string | null;
+  images: string | null;
+}
+
 export const revalidate = 0
 
 export default function PostSwiper() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     async function fetchPosts() {
       const supabase = supabaseClient();
       const { data: postsData } = await supabase.from('posts').select('id, slug, title, images');
-      setPosts(postsData);
+      setPosts(postsData ?? []);
     }
     fetchPosts();
   }, []);
+
+  if (!posts) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

@@ -30,10 +30,10 @@ export default async function RootLayout({
       <ToasterComponents />
         <div className="h-screen">
         <div className="container h-full mx-auto xl:px-30 max-w-6xl">
-          <div className="grid grid-cols-4 h-full">
+          <div className="grid grid-cols-8 md:grid-cols-4 h-full">
           <LeftSidebar />
             <main 
-              className="col-span-3 lg:col-span-2 px-4 my-6">
+              className="col-span-7 lg:col-span-2 px-4 my-6">
               {children}
             </main>
             <RightSidebar />

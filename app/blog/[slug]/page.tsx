@@ -12,9 +12,7 @@ const supabase = supabaseClient();
 export async function generateStaticParams() {
   const { data: posts } = await supabase.from('posts').select('slug')
 
-  return posts?.map(({ slug }) => ({
-    slug,
-  }))
+  return posts?.map(({ slug }) => slug) || []
 }
 
 export default async function Post({ 

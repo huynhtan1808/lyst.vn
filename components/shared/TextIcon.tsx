@@ -29,7 +29,7 @@ const TextIcon: React.FC<TextIconProps> = ({
       : iconClassName;
 
   return (
-    <Component
+    <div
       className={classNames(
         "flex items-center",
         (LeftIcon || RightIcon) && "gap-x-2",
@@ -40,7 +40,7 @@ const TextIcon: React.FC<TextIconProps> = ({
       {LeftIcon && <LeftIcon className={iconClass} />}
       {children}
       {RightIcon && <RightIcon className={iconClass} />}
-    </Component>
+    </div>
   );
 };
 
