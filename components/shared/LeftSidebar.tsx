@@ -87,7 +87,7 @@ export default function LeftSidebar() {
     <aside className="col-span-1 h-full pr-0 md:pr-6 border-r border-gray-200">
       <div className="flex flex-col fixed h-screen items-end justify-between py-4">
         <div className="space-y-2 lg:w-[230px]">
-          <div className="p-4">
+          <div className="p-3 md:p-4">
             <Logo/>
           </div>
             <nav id="nav">
