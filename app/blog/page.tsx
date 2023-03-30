@@ -15,7 +15,7 @@ export default async function Posts() {
   }
   return (
   <>
-  <h2 className="text-xl font-bold">Khám phá</h2>
+  <h1 className="text-xl font-bold">Khám phá</h1>
   <div className="mt-5">
       {posts.map((post: any) => {
       const imageUrls = post.images ? post.images.split(",") : [];
