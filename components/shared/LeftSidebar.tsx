@@ -25,7 +25,7 @@ const items = [
   {
     icon: AiOutlinePlusCircle,
     label: 'Đăng tin',
-    href: `/dashboard/post/add`,
+    href: `/add`,
     auth: true,
   },
 ]

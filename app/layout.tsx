@@ -1,5 +1,3 @@
-
-import Navbar from '@/components/NavBar'
 import LeftSidebar from '@/components/shared/LeftSidebar'
 import RightSidebar from '@/components/shared/RightSidebar';
 import ToasterComponents from "../components/ToasterComponents";
@@ -26,7 +24,7 @@ export default async function RootLayout({
       */}
       <head />
       <UserContextProvider>
-      <body className='max-w-6xl mb-40 flex flex-col md:flex-row lg:mx-auto'>
+      <body className='max-w-6xl flex flex-col md:flex-row lg:mx-auto'>
       <ToasterComponents />
         <div className="h-screen">
         <div className="container h-full mx-auto xl:px-30 max-w-6xl">

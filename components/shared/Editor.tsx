@@ -59,7 +59,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
 
   return (
     <div 
-      className={classNames(!readOnly && "border border-gray-200", className)}
+      className={classNames(!readOnly && "border border-gray-300", className)}
       >
       <EditorContent 
       className={classNames("p-2")}
@@ -71,7 +71,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
             <div className="flex items-center md:gap-2 flex-wrap">
               <CircleButton
                 secondary
-                className="text-gray-300"
+                className="text-gray-400"
                 iconClassName="w-4 h-4"
                 LeftIcon={AiOutlineBold}
                 onClick={() => editor?.chain().toggleBold().focus().run()}
@@ -80,7 +80,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
 
               <CircleButton
                 secondary
-                className="text-gray-300"
+                className="text-gray-400"
                 iconClassName="w-4 h-4"
                 LeftIcon={AiOutlineUnderline}
                 onClick={() => editor?.chain().toggleUnderline().focus().run()}
@@ -89,7 +89,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
 
               <CircleButton
                 secondary
-                className="text-gray-300"
+                className="text-gray-400"
                 iconClassName="w-4 h-4"
                 LeftIcon={AiOutlineItalic}
                 onClick={() => editor?.chain().toggleItalic().focus().run()}
@@ -107,7 +107,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
 
               <CircleButton
                 secondary
-                className="text-gray-300"
+                className="text-gray-400"
                 iconClassName="w-4 h-4"
                 LeftIcon={AiOutlineOrderedList}
                 onClick={() => editor?.chain().toggleOrderedList().focus().run()}
@@ -116,7 +116,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
 
               <CircleButton
                 secondary
-                className="text-gray-300"
+                className="text-gray-400"
                 iconClassName="w-4 h-4"
                 LeftIcon={AiOutlineStrikethrough}
                 onClick={() => editor?.chain().toggleStrike().focus().run()}

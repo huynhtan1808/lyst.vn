@@ -2,27 +2,31 @@
 import { supabaseClient } from '@/lib/supabase-browser'
 import { notFound } from 'next/navigation'
 import Image from '@/components/shared/Image'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.min.css';
-
-export const dynamic = 'force-static'
+import { useUser } from '@/contexts/AuthContext'
+import UserCard from '@/components/shared/UserCard'
 
 const supabase = supabaseClient();
 
+
+
 export async function generateStaticParams() {
-  const { data: posts } = await supabase.from('posts').select('slug')
+  const { data: posts } = await supabase.from('posts').select("*, user:users!user_id(*)")
 
   return posts?.map(({ slug }) => slug) || []
 }
 
 export default async function Post({ 
   params: { slug } }: { params: { slug: string } }) {
-  const { data: post } = await supabase.from('posts').select().match({ slug }).single()
-  if (!post) {
-    notFound()
-  }
-  const content = {__html : post?.description || ''};
-  const imageUrls = post?.images ? post.images.split(",") : [];
+
+
+    const { data: post } = await supabase.from('posts').select().match({ slug }).single()
+   
+    const content = {__html : post?.description || ''};
+    const imageUrls = post?.images ? post.images.split(",") : [];
+
+    if (!post) {
+      notFound()
+    }
 
   return (
     <section>

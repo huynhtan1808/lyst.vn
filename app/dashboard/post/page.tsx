@@ -2,19 +2,22 @@
 
 import { useState, useEffect } from 'react';
 import { supabaseClient } from '@/lib/supabase-browser';
-import BlogPosts from '@/components/shared/PostCard';
+import PostCardFeed from '@/components/shared/PostCardFeed';
 import { useUser } from '@/contexts/AuthContext';
 
 export const revalidate = 0;
 
-export default function Posts() {
+export default function UserPosts() {
   const { user } = useUser();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function fetchPosts() {
       const supabase = supabaseClient();
-      const { data } = await supabase.from('posts').select('id, slug, title, images').eq('user_id', user?.id)
+      const { data } = await supabase
+      .from('posts')
+      .select('id, slug, title, images, user:users!user_id(*)')
+
       if (!data) {
         return <p>No posts found.</p>
       }
@@ -26,6 +29,7 @@ export default function Posts() {
   if (!posts) {
     return <p>No posts found.</p>;
   }
+  
   return (
     <>
       <div>
@@ -33,9 +37,12 @@ export default function Posts() {
           const imageUrls = post.images ? post.images.split(",") : [];
           const imageUrl = imageUrls.shift();
           return (
-            <BlogPosts
+            <PostCardFeed
               key={post.id}
               id={post.id}
+              userAvatar={post.user.avatar_url}
+              name={post.user.name}
+              username={post.user.username}
               images={imageUrl}
               title={post.title}
               slug={post.slug}

@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { useUser } from '@/contexts/AuthContext';
-import HeaderProfile from "@/components/shared/HeaderProfile";
+import UserCard from "@/components/shared/UserCard";
 import Button from "@/components/shared/Button"
 import Footer from '@/components/partials/Footer';
 import TextIcon from './TextIcon';
 import { FcGoogle } from "react-icons/fc";
+
 
 
 export default function RightSidebar() {
@@ -18,7 +19,11 @@ export default function RightSidebar() {
       <div>
         <div className="flex flex-col gap-6 mt-4">
           {user ? (
-              <HeaderProfile />
+              <UserCard
+              avatar={user.avatar_url}
+              name={user.name}
+              username={user.username}
+              />
               ) : (
               <div className="block items-center px-4">
                 <Link href={"/login"}>

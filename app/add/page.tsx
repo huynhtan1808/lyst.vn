@@ -92,14 +92,14 @@ export default function AddPost() {
         />
         <label htmlFor="Description">Mô tả</label>
         <Editor
-          className=""
+          className="rounded-md"
           description={description}
           setDescription={setDescription}
         />
         <div>
         <Button
           primary
-          className="mt-5"
+          className="mt-5 w-full justify-center"
           type="submit"
         >
             Đăng tin
