@@ -1,18 +1,19 @@
 "use client"
 
-import { useRouter } from 'next/navigation';
 import { useUser } from '@/contexts/AuthContext';
+import { Suspense } from 'react';
+import {CardSkeleton} from '@/components/skeleton/PostCardSkeleton';
+
 
 export default function Dashboard() {
-    
-    const router = useRouter();
-    const { user }  = useUser();
-    
-    return (
-    <div className=''>
-      <h1 className='text-2xl font-bold'>
+  
+  const { user }  = useUser();
+  
+  return (
+  <Suspense fallback={<CardSkeleton isLoading={true} />}>
+    <h1 className='text-2xl font-bold'>
         Hi, {user?.name}
-      </h1>
-    </div>
+    </h1>
+  </Suspense>
   );
 }

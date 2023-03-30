@@ -3,11 +3,10 @@
 import { useUser } from '@/contexts/AuthContext';
 import Avatar from "@/components/shared/Avatar";
 
-
-
 export default function HeaderProfile() {
 
   const { user } = useUser();
+  
   if (!user) return null;
 
   return (
@@ -19,6 +18,6 @@ export default function HeaderProfile() {
           <p className="text-gray-300 capitalize">{user.authRole}</p>
         </div>
       </div>
-    </div>  
+    </div>
   );
 };

@@ -26,7 +26,7 @@ const PostCard = ({ id, slug, title, images }: Props) => {
               className="rounded w-28 h-28"
             />
           </div>
-        <h2 className="text-sm p-2">{title}</h2>
+          <h2 className="text-sm p-2">{title}</h2>
         </Link>
     </div>
   );

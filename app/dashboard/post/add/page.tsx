@@ -6,7 +6,6 @@ import { Database } from '@/db_types'
 import { redirect } from 'next/navigation';
 import slugify from 'slugify';
 
-
 import Button from "@/components/shared/Button"
 import Editor from "@/components/shared/Editor"
 import ImageUpload from '@/components/features/upload/ImageUpload';

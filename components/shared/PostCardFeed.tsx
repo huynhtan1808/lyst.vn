@@ -1,6 +1,8 @@
 import React from "react";
 import Image from '@/components/shared/Image'
 import Link from 'next/link'
+import { Suspense } from 'react'
+
 
 type Props = {
   id: string;
@@ -11,6 +13,7 @@ type Props = {
 
 const PostCard = ({ id, slug, title, images }: Props) => {
   return (
+    <Suspense fallback={<p>Loading</p>}>
         <div 
         key={id}
         className="py-5 border-t border-gray-200"
@@ -28,6 +31,7 @@ const PostCard = ({ id, slug, title, images }: Props) => {
         <h2 className="py-2">{title}</h2>
         </Link>
     </div>
+     </Suspense>
   );
 };
 

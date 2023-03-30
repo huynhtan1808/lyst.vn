@@ -71,13 +71,13 @@ export default function PostSwiper() {
       const imageUrl = imageUrls.shift();
       return (
         <SwiperSlide  key={post.id}>
-        <PostCard
-          key={post.id}
-          id={post.id}
-          images={imageUrl}
-          title=""
-          slug={post.slug}
-        />
+            <PostCard
+              key={post.id}
+              id={post.id}
+              images={imageUrl}
+              title=""
+              slug={post.slug}
+            />
         </SwiperSlide>
     )
   })}
