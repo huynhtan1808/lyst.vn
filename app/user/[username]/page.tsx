@@ -40,14 +40,14 @@ export default async function UserPage({ params: { username } }: { params: { use
                   alt="profile banner"
                 />
               ) : (
-                <div className="w-full h-full bg-gray-200"></div>
+                <div className="w-full h-full bg-gray-100"></div>
               )}
             </div>
           </Section>
         </div>
-        <Section className="bg-gray-50 pb-8 -mt-12 flex flex-col md:flex-row gap-4 md:items-center justify-between pt-6 w-full">
+        <Section className="bg-gray-50 -mt-12 flex flex-col md:flex-row gap-4 md:items-center justify-between pt-6 w-full">
           <div className="w-full relative flex flex-col md:flex-row gap-4 mx-5">
-            <div className="border-4 border-gray-100 rounded-full w-24 h-24">
+            <div className="border-4 bg-gray-100 border-gray-100 rounded-full w-24 h-24">
               <Avatar
                 src={profile.avatar_url}
                 className="!w-full !h-full"

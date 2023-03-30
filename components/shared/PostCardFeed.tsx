@@ -18,7 +18,7 @@ const PostCard = ({ id, slug, title, images, userAvatar, name, username }: Props
   return (
         <div 
         key={id}
-        className="py-5 border-t border-gray-200"
+        className="py-5 border-b border-gray-200"
         >
 
         <Link href={`/user/${username}`}>
