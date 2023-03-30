@@ -4,16 +4,9 @@ import PostCardFeed from '@/components/shared/PostCardFeed'
 
 export const revalidate = 0
 
-const sleep = (ms:any) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-
 export default async function Posts() {
 
   const supabase = supabaseClient();
-
-  await sleep(5000);
 
   const { data: posts } = await supabase.from('posts').select('id, slug, title, images')
 
