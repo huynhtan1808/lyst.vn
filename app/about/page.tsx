@@ -6,7 +6,7 @@ export default function About() {
       <h1 className='text-2xl font-bold'>
         Về chúng tôi
       </h1>
-      <p></p>
+      <p>Trang Mua – Bán – Cho Thuê Bất Động Sản hàng đầu Việt Nam</p>
     </div>
   );
 }

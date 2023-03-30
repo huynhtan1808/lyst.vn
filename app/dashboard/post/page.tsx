@@ -1,30 +1,13 @@
-"use client"
 
-import { useState, useEffect } from 'react';
 import { supabaseClient } from '@/lib/supabase-browser';
 import PostCardFeed from '@/components/shared/PostCardFeed';
-import { useUser } from '@/contexts/AuthContext';
 
-export const revalidate = 0;
+export default async function UserPosts() {
+  const supabase = supabaseClient();
 
-export default function UserPosts() {
-  const { user } = useUser();
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      const supabase = supabaseClient();
-      const { data } = await supabase
-      .from('posts')
-      .select('id, slug, title, images, user:users!user_id(*)')
-
-      if (!data) {
-        return <p>No posts found.</p>
-      }
-      setPosts(data as never[])
-    }
-    fetchPosts();
-  }, [user]);
+  const { data: posts } = await supabase
+  .from('posts')
+  .select('id, slug, title, images, user_id, user:users!user_id(*)')
 
   if (!posts) {
     return <p>No posts found.</p>;

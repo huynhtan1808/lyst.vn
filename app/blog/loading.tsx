@@ -1,5 +1,5 @@
 import { PostCardSkeleton } from '@/components/skeleton/PostCardSkeleton';
-import {SkeletonItem} from '@/components/skeleton/SkeletonItem';
+import { SkeletonItem } from '@/components/skeleton/SkeletonItem';
 
 
 export default function Loading() {
