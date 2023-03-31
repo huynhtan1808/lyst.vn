@@ -5,12 +5,12 @@ import ReactFileUploading, {
 } from "react-files-uploading";
 import { ExportInterface } from "react-files-uploading/dist/typings";
 import {
-  AiFillFileAdd,
   AiOutlineCloudUpload,
   AiOutlineDelete,
   AiOutlineEdit,
   AiOutlineFile,
 } from "react-icons/ai";
+import {RiImageAddLine} from "react-icons/ri"
 import BaseButton from "./BaseButton";
 import Button from "./Button";
 import { humanFileSize } from "@/utils";
@@ -121,9 +121,9 @@ export const FileUploadedList: React.FC<FileUploadingUIProps> = ({
 
       {multiple && (
         <BaseButton
-          LeftIcon={AiFillFileAdd}
+          LeftIcon={RiImageAddLine}
           onClick={onFileUpload}
-          className="flex items-center justify-center w-40 h-40 border border-dashed border-gray-300 hover:border-white bg-transparent"
+          className="flex items-center justify-center w-40 h-40 border border-dashed border-gray-300 hover:border-gray-400 bg-transparent"
           iconClassName="w-10 h-10"
         />
       )}

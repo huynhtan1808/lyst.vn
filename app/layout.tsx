@@ -24,11 +24,11 @@ export default async function RootLayout({
       */}
       <head />
       <UserContextProvider>
-      <body className='max-w-6xl flex flex-col md:flex-row lg:mx-auto'>
+      <body className='max-w-6xl flex flex-col lg:mx-auto'>
       <ToasterComponents />
         <div className="h-screen">
         <div className="container h-full mx-auto xl:px-30 max-w-6xl">
-          <div className="grid grid-cols-8 md:grid-cols-4 h-full">
+          <div className="grid grid-cols-8 lg:grid-cols-4 h-full">
           <LeftSidebar />
             <main 
               className="col-span-7 lg:col-span-2 px-4 my-6">

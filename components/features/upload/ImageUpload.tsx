@@ -3,7 +3,9 @@ import Button from "@/components/shared/Button";
 import FileUploading, {FileUploader, FileUploadingProps} from "@/components/shared/FileUploading";
 import Image from "@/components/shared/Image";
 import { randomString } from "@/utils";
-import { AiFillFileAdd, AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import {RiImageAddLine } from "react-icons/ri"
+
 
 interface ImageUploadProps extends FileUploadingProps {
   onChange?: (images: File[]) => void;
@@ -24,7 +26,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
         if (!props.fileList?.length) return <FileUploader {...props} />;
 
         return (
-          <div className="flex bg-background-100 items-center gap-4">
+          <div className="flex flex-wrap bg-background-100 items-center gap-2">
             {props.fileList.map((file, index) => {
               const key = randomString(8);
 
@@ -32,7 +34,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
 
               return (
                 <div key={key} className="relative col-span-1">
-                  <div className="w-28 h-28">
+                  <div className="w-28 h-28 md:w-[130px]">
                     <Image
                       src={imageSrc}
                       alt={file.name}
@@ -47,7 +49,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
                       secondary
                       onClick={() => props.onFileUpdate(index)}
                       LeftIcon={AiOutlineEdit}
-                      iconClassName="w-4 h-4 text-gray-600"
+                      iconClassName="w-4 h-4 text-gray-400"
                       className="!p-1"
                     />
 
@@ -64,10 +66,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
             })}
 
             <BaseButton
-              LeftIcon={AiFillFileAdd}
+              LeftIcon={RiImageAddLine}
               onClick={props.onFileUpload}
-              className="relative w-10 h-14 col-span-1 border border-dashed border-gray-300 hover:border-white bg-transparent"
-              iconClassName="w-10 h-10 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+              className="transition-none relative w-28 h-28 md:w-[130px] col-span-1 border border-dashed border-gray-300 hover:bg-gray-50"
+              iconClassName="fill-gray-300 w-8 h-8 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
             />
           </div>
         );

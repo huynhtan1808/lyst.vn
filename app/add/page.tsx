@@ -82,7 +82,10 @@ export default function AddPost() {
       <UploadContainer className="py-4" isVerified={user?.isVerified}>
       <div>
       <form className="mt-3" onSubmit={handleFormSubmit}>
+        
+        <label htmlFor="Images">Hình ảnh</label>
         <ImageUpload onChange={setSelectedImages} />
+
         <TextInput
           id="title"
           label="Tiêu đề"
@@ -90,6 +93,7 @@ export default function AddPost() {
           onChange={handleTitleChange}
           required
         />
+
         <label htmlFor="Description">Mô tả</label>
         <Editor
           className="rounded-md"

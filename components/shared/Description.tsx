@@ -7,7 +7,7 @@ export interface DescriptionProps {
 }
 
 const Description = React.forwardRef<EditorType, DescriptionProps>(
-  ({ description, ...props }) => {
+  ({ description, ...props }, ref) => {
     return (
       <Editor
         readOnly
