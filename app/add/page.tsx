@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useUser } from '@/contexts/AuthContext';
 import { Database } from '@/db_types'
 import { redirect } from 'next/navigation';

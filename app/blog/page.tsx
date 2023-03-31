@@ -21,7 +21,6 @@ export default async function Posts() {
   <div className="mt-5">
       {posts.map((post: any) => {
       const imageUrls = post.images ? post.images.split(",") : [];
-      const imageUrl = imageUrls.shift();
       return (
         <PostCardFeed
           key={post.id}
@@ -29,10 +28,10 @@ export default async function Posts() {
           userAvatar={post.user.avatar_url}
           name={post.user.name}
           username={post.user.username}
-          images={imageUrl}
+          images={imageUrls}
           title={post.title}
           slug={post.slug}
-      />
+        />
         )
         })}
       </div>

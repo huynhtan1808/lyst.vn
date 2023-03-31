@@ -1,6 +1,5 @@
 import { User } from "@supabase/gotrue-js";
 
-
 export type UserDetails = User & {
   authRole: string;
   isVerified: boolean;

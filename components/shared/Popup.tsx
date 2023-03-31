@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { createPopper } from "@popperjs/core";
 
 type PopoverProps = {

@@ -7,8 +7,6 @@ import UserCard from '@/components/shared/UserCard'
 
 const supabase = supabaseClient();
 
-
-
 export async function generateStaticParams() {
   const { data: posts } = await supabase.from('posts').select("*, user:users!user_id(*)")
 
@@ -35,9 +33,9 @@ export default async function Post({
         <div key={index}>
           <Image 
             src={url}
-            alt="abc" 
+            alt={post.title || ''}
             height='500'
-            width='800'
+            width='500'
             className="flex flex-wrap w-60 object-cover block aspect-[16/9] rounded-md"
           />
         </div>

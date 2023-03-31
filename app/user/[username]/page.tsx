@@ -3,7 +3,7 @@ import { supabaseClient } from '@/lib/supabase-browser'
 import { notFound } from 'next/navigation'
 import Section from "@/components/shared/Section";
 import Avatar from '@/components/shared/Avatar';
-import UserPosts from '@/app/dashboard/post/page';
+import UserPosts from '@/app/user/post/page';
 
 const supabase = supabaseClient();
 
@@ -72,7 +72,8 @@ export default async function UserPage({ params: { username } }: { params: { use
             </div>
           </div>
         </Section>
-        <UserPosts/>
+        {/* @ts-expect-error Server Component */}
+        <UserPosts />
     </div>
   );
 }
