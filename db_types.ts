@@ -13,8 +13,8 @@ export interface Database {
         Row: {
           id: string | null
           created_at: string | null
-          title: string | null
-          description: string | null
+          title: string
+          description: string
           slug: string | null
           user_id: string | null
           images: string | null
@@ -22,8 +22,8 @@ export interface Database {
         Insert: {
           id?: string | null
           created_at?: string | null
-          title: string | null
-          description: string | null
+          title?: string
+          description?: string | null
           slug: string | null
           user_id?: string | null
           images?: string | null
@@ -31,7 +31,7 @@ export interface Database {
         Update: {
           id?: string | null
           created_at?: string | null
-          title?: string | null
+          title?: string
           description?: string | null
           slug?: string | null
           user_id?: string | null
@@ -43,7 +43,7 @@ export interface Database {
           id: string 
           authRole: string 
           isVerified: boolean 
-          avatar_url: string 
+          avatar_url: string
           bannerUrl: string 
           name: string
           username: string

@@ -98,10 +98,10 @@ const Swiper: React.FC<SwiperProps> = ({
       {...props}
     >
       {React.Children.map(children, (child) => (
-        <SwiperSlide className='mt-4'>{child}</SwiperSlide>
+        <SwiperSlide className=''>{child}</SwiperSlide>
       ))}
       {!hideNavigation && (
-        <div slot="container-end" className="swiper-navigation absolute right-0 bottom-full top-6 flex space-x-4">
+        <div slot="container-end" className="swiper-navigation">
         <CircleButton
           ref={prevButtonRef}
           outline

@@ -5,7 +5,7 @@ import Image from "@/components/shared/Image";
 import classNames from "classnames";
 
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  src: string;
+  src?: string;
   className?: string;
 }
 

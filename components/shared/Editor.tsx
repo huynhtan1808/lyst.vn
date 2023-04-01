@@ -19,7 +19,7 @@ import {
 
 
 type Props = {
-  description: string | null;
+  description?: string | null;
   setDescription?: (content: string) => void;
   placeholder?: string;
   readOnly?: boolean;

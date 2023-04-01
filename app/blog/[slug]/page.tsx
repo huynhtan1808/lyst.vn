@@ -2,8 +2,7 @@
 import { supabaseClient } from '@/lib/supabase-browser'
 import { notFound } from 'next/navigation'
 import Image from '@/components/shared/Image'
-import { useUser } from '@/contexts/AuthContext'
-import UserCard from '@/components/shared/UserCard'
+import SinglePost from '@/components/shared/Singlepost'
 
 const supabase = supabaseClient();
 
@@ -17,34 +16,30 @@ export default async function Post({
   params: { slug } }: { params: { slug: string } }) {
 
 
-    const { data: post } = await supabase.from('posts').select().match({ slug }).single()
-   
-    const content = {__html : post?.description || ''};
-    const imageUrls = post?.images ? post.images.split(",") : [];
+    const { data: post } = await supabase
+    .from('posts')
+    .select('id, slug, title, images, description, user_id, user:users!user_id(*)')
+    .match({ slug })
+    .single()
 
+
+   
     if (!post) {
       notFound()
     }
+    
+    const imageUrls = post.images ? post.images.split(",") : [];
 
-  return (
-    <section>
-      <div className="flex flex-wrap gap-5">
-      {imageUrls.map((url ,index) => (
-        <div key={index}>
-          <Image 
-            src={url}
-            alt={post.title || ''}
-            height='500'
-            width='500'
-            className="flex flex-wrap w-60 object-cover block aspect-[16/9] rounded-md"
-          />
-        </div>
-      ))}
-      </div>
-    <h1 className='text-2xl font-bold mt-5 mb-2'>
-      {post.title}
-    </h1>
-    <div dangerouslySetInnerHTML={content} />
-  </section>
-  );
+    const user = Array.isArray(post.user) ? post.user[0] : post.user;
+
+    return (
+      <SinglePost
+        userAvatar={user?.avatar_url}
+        name={user?.name}
+        username={user?.username}
+        images={imageUrls}
+        title={post.title}
+        description={post.description}
+      />
+    );
 }

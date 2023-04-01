@@ -46,15 +46,7 @@ input[type='email'] {
 .swiper-button-disabled {
   @apply cursor-not-allowed opacity-40 hover:text-white hover:bg-transparent;
 }
-.swiper-button-prev {
-  left: unset !important;
-  right: 40px !important;
-  height: 30px !important;
-}
-.swiper-button-next {
-  right: 1px !important;
-  height: 30px !important;
-}
+
 .swiper-button-prev:after, .swiper-button-next:after {
   font-size: 14px !important;
   color: #000;

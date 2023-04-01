@@ -18,8 +18,8 @@ type Posts = Database['public']['Tables']['posts']['Row']
 export default function AddPost() {
   const { user , supabase } = useUser();
   const [loading, setLoading] = useState(true)
-  const [title, setTitle] = useState<Posts['title']>(null)
-  const [description, setDescription] = useState<Posts['description']>(null)
+  const [title, setTitle] = useState<Posts['title']>()
+  const [description, setDescription] = useState<Posts['description']>()
   const [slug, setSlug] = useState<Posts['slug']>(null)
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const { uploadImages } = useImageUpload();

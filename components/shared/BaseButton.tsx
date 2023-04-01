@@ -49,7 +49,7 @@ const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       }
     } else {
       if (outline) {
-        buttonClassName = "bg-primary border-solid border-1 border-gray-200 shadow";
+        buttonClassName = "bg-gray-100 border-solid border-1 border-gray-200 shadow";
       } else {
         buttonClassName = "bg-transparent";
       }
