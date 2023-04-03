@@ -11,8 +11,8 @@ export interface Database {
     Tables: {
       posts: {
         Row: {
-          id: string | null
-          created_at: string | null
+          id: string
+          created_at: string
           title: string
           description: string
           slug: string | null

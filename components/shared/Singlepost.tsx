@@ -3,8 +3,6 @@ import Link from 'next/link'
 import Avatar from "./Avatar";
 import Swiper, { SwiperSlide } from "@/components/shared/Swiper";
 
-
-
 type Props = {
   title: string;
   images: string[];
@@ -15,8 +13,9 @@ type Props = {
 };
 
 const SinglePost = ({ title, images, description, userAvatar, name, username }: Props) => {
-
-    const content = {__html : description || ''};
+  
+  const content = {__html : description || ''};
+  
   return (
     <div className="">
         <div className=''>
@@ -45,12 +44,12 @@ const SinglePost = ({ title, images, description, userAvatar, name, username }: 
                 },
                 1024: {
                 slidesPerView: 1,
-                slidesPerGroup: 3,
+                slidesPerGroup: 1,
                 spaceBetween: 20,
                 },
                 768: {
                 slidesPerView: 1,
-                slidesPerGroup: 2,
+                slidesPerGroup: 1,
                 spaceBetween: 20,
                 },
                 0: {

@@ -1,6 +1,7 @@
 import Image from '@/components/shared/Image'
 import Link from 'next/link'
 import Avatar from "./Avatar";
+import {FiImage} from "react-icons/fi"
 
 
 type Props = {
@@ -28,30 +29,17 @@ const PostCardFeed = ({ id, slug, title, images, userAvatar, name, username }: P
        
       <Link href={`/blog/${slug}`}>
         <h2 className="py-2">{title}</h2>
-        <div className='flex flex-wrap gap-1'>
-          {images.length === 1 ? (
-            <Image
-              src={images[0]}
-              alt={title}
-              width={"620"}
-              height={"500"}
-              className="object-cover"
-            />
-          ) : (
-            images.map((image: string, index: number) => (
-              <Image
-                key={index}
-                src={image}
-                alt={title}
-                width={"500"}
-                height={"500"}
-                className="flex flex-wrap w-36 md:w-[270px] object-cover block aspect-[1/1]"
-              />
-            ))
-          )}
-          {images.length - 4 > 1 && (
-            <div className="text-center">
-              <p className="text-sm text-gray-400">+{images.length - 4} more</p>
+        <div className='relative'>
+          <Image
+            src={images[0]}
+            alt={title}
+            width={"620"}
+            height={"500"}
+            className="object-cover"
+          />
+          {images.length > 1 && (
+            <div className='absolute flex bg-white/30 items-center text-sm top-1 right-1 text-white p-1 rounded-md'>
+              <FiImage className="w-4 h-4 mr-1"/>{images.length - 1}
             </div>
           )}
         </div>
