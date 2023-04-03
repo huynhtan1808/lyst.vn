@@ -1,7 +1,7 @@
 import LeftSidebar from '@/components/shared/LeftSidebar'
 import RightSidebar from '@/components/shared/RightSidebar';
 import ToasterComponents from "../components/ToasterComponents";
-import Error from './error';
+import LoginModal from '@/components/features/modals/LoginModal';
 import { UserContextProvider } from '@/contexts/AuthContext';
 import type { Database } from '../db_types';
 import type { SupabaseClient } from '@supabase/auth-helpers-nextjs';
@@ -73,6 +73,7 @@ export default async function RootLayout({
       <UserContextProvider>
       <body className='max-w-6xl flex flex-col lg:mx-auto'>
       <ToasterComponents />
+      <LoginModal />
         <div className="h-screen">
         <div className="container h-full mx-auto xl:px-30 max-w-6xl">
           <div className="grid grid-cols-8 lg:grid-cols-4 h-full">
