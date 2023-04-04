@@ -1,9 +1,12 @@
 'use client';
 
-import Link from 'next/link';
+import { useCallback } from "react";
 import { motion } from 'framer-motion';
 import { AiOutlinePlusCircle, AiOutlineHome, AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
+import Link from 'next/link';
 
+import { useUser } from "@/contexts/AuthContext";
+import useLoginModal from "@/hooks/useLoginModal";
 import Profile from './Profile';
 import SidebarItem from './SidebarItem';
 import useAddModal from '@/hooks/useAddModal';
@@ -73,7 +76,18 @@ function Logo() {
 
 export default function LeftSidebar() {
 
+  const { user } = useUser();
+
   const addModal = useAddModal();
+  const loginModal = useLoginModal();
+
+  const onAdd = useCallback(() => {
+    if (!user) {
+      return loginModal.onOpen();
+    }
+
+    addModal.onOpen();
+  }, [loginModal, addModal, user]);
 
 
   return (
@@ -95,8 +109,9 @@ export default function LeftSidebar() {
             ))}
              <Button
               secondary
-              onClick={addModal.onOpen}
+              onClick={onAdd}
               className="text-xl justify-center !rounded-full hover:bg-slate-300 !bg-opacity-20"
+              label=""
               >
               <TextIcon className="gap-x-4 px-1 py-2" iconClassName="w-6 h-6" LeftIcon={AiOutlinePlusCircle}>Đăng tin</TextIcon>
               </Button>

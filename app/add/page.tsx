@@ -105,9 +105,8 @@ export default function AddPost() {
           primary
           className="mt-5 w-full justify-center"
           type="submit"
-        >
-            Đăng tin
-        </Button>
+          label="Đăng tin"
+        /> 
         </div>
         </form>
       </div>

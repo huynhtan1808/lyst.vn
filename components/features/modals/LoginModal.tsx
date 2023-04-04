@@ -105,10 +105,9 @@ const googleSignInHandler = async () => {
           <Button
             className="relative border border-gray-200 bg-white hover:bg-gray-200 flex items-center justify-center w-full"
             onClick={googleSignInHandler}
-          >
-            <FcGoogle className="mr-6"/>
-            Đăng nhập với Google
-          </Button>  
+            LeftIcon={FcGoogle}
+            label="Đăng nhập với Google"
+          />
         </div>
       <form
         className="mt-8 space-y-6"

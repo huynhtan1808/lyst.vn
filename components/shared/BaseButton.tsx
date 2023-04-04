@@ -14,6 +14,7 @@ export interface BaseButtonProps
   ) => void;
   shortcutKey?: string;
   isLoading?: boolean;
+  label: string;
 }
 
 const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
@@ -30,6 +31,7 @@ const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       onClick,
       shortcutKey,
       isLoading,
+      label,
       ...rest
     } = props;
 
@@ -82,6 +84,7 @@ const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
         )}
         {children}
         {RightIcon && <RightIcon className={iconClass} />}
+        {label}
       </button>
     );
   }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useMemo } from "react";
 import { useUser } from '@/contexts/AuthContext';
 import toast, { Toaster } from "react-hot-toast";
 import { Database } from '@/db_types'
@@ -18,6 +18,10 @@ import TextInput from '@/components/shared/TextInput';
 
 type Posts = Database['public']['Tables']['posts']['Row']
 
+enum STEPS {
+    IMAGES = 0,
+    INFO = 1,
+  }
 
 const AddModal = () => {
   const { user , supabase } = useUser();
@@ -28,9 +32,19 @@ const AddModal = () => {
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const { uploadImages } = useImageUpload();
 
+  const [step, setStep] = useState(STEPS.IMAGES);
+
   const addModal = useAddModal();
 
-  const handleTitleChange = async (e:any) =>  {
+  const onBack = () => {
+    setStep((value) => value - 1);
+  }
+
+  const onNext = () => {
+    setStep((value) => value + 1);
+  }
+
+  const handleTitleChange = async (e : any) =>  {
     setTitle(e.target.value);
     const slugifiedTitle = slugify(e.target.value, { lower: true });
     setSlug(slugifiedTitle);
@@ -45,14 +59,23 @@ const AddModal = () => {
   }, [title])
 
   const handleFormSubmit = async () =>  {
+    if (!selectedImages || selectedImages.length === 0) {
+        toast.error('Vui lòng chọn ít nhất 1 ảnh.');
+        setLoading(false);
+        return;
+    }
+
+    if (step !== STEPS.INFO) {
+        return onNext();
+      }
+
+    if (!title) {
+    toast.error('Vui lòng nhập tiêu đề và mô tả.');
+    setLoading(false);
+    return;
+    }
 
     setLoading(true);
-
-    if (!selectedImages || selectedImages.length === 0) {
-      alert("Please select at least one image.");
-      setLoading(false);
-      return;
-    }
 
     try {
       const imageUrls = await uploadImages(selectedImages);
@@ -66,67 +89,82 @@ const AddModal = () => {
       };
 
       let { error } = await supabase.from("posts").upsert(post);
-      if (error) throw error;
 
-      alert("Published!");
-      setTitle("");
-      setDescription("");
-      setSlug("");
-      setSelectedImages([]);
+      if (error) {
+        toast.error(error.message);
+      };
+
+      toast.success('Đã đăng!');
+      addModal.onClose();
     } catch (error) {
-      alert("Error publishing the post.");
-      console.log(error);
+        toast.error('Something went wrong.');
+        console.log(error);
     } finally {
       setLoading(false);
     }
   }
 
-  const bodyContent = (
+  const actionLabel = useMemo(() => {
+    if (step === STEPS.INFO) {
+      return 'Đăng tin'
+    }
+
+    return 'Tiếp tục'
+  }, [step]);
+
+  const secondaryActionLabel = useMemo(() => {
+    if (step === STEPS.IMAGES) {
+      return undefined
+    }
+
+    return 'Quay lại'
+  }, [step]);
+
+  let bodyContent = (
     <div>
       <UploadContainer isVerified={user?.isVerified}>
-      <div>
-      <form onSubmit={handleFormSubmit}>
         <label htmlFor="Images">Hình ảnh</label>
-        <ImageUpload onChange={setSelectedImages} />
-
-        <TextInput
-          id="title"
-          label="Tiêu đề"
-          value={title || ''}
-          onChange={handleTitleChange}
-          required
-        />
-
-        <label htmlFor="Description">Mô tả</label>
-        <Editor
-          className="rounded-md"
-          description={description}
-          setDescription={setDescription}
-        />
-        <div>
-        <Button
-          primary
-          className="mt-5 w-full justify-center"
-          type="submit"
-        >
-            Đăng tin
-        </Button>
-        </div>
-        </form>
-      </div>
+        <ImageUpload value={selectedImages} onChange={setSelectedImages} />
       </UploadContainer>
     </div>
   )
+
+  if (step === STEPS.INFO) {
+    bodyContent = (
+        <div>
+        <UploadContainer isVerified={user?.isVerified}>
+        <div>
+          <TextInput
+            id="title"
+            label="Tiêu đề"
+            value={title}
+            onChange={handleTitleChange}
+            required
+          />
+  
+          <label htmlFor="Description">Mô tả</label>
+          <Editor
+            className="rounded-md"
+            description={description}
+            setDescription={setDescription}
+          />
+        </div>
+        </UploadContainer>
+      </div>
+    );
+  }
 
   return (
     <Modal
       disabled={loading}
       isOpen={addModal.isOpen}
       title="Đăng tin mới"
-      actionLabel="Continue"
+      actionLabel={actionLabel}
       onClose={addModal.onClose}
-      onSubmit = {handleFormSubmit}
+      onSubmit={handleFormSubmit}
       body={bodyContent}
+      secondaryAction={step === STEPS.IMAGES ? undefined : onBack}
+      secondaryActionLabel={secondaryActionLabel}
       className="w-full"
     />
   );

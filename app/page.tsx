@@ -1,9 +1,7 @@
 import { createServerClient } from '@/lib/supabase-server'
 import PostCardFeed from '@/components/shared/PostCardFeed'
 import PostSwiper from '@/components/shared/PostSwiper'
-import Button from '@/components/shared/Button'
-import Link from 'next/link'
-import React from 'react'
+
 export const revalidate = 0
 
 export default async function Home() {
@@ -20,13 +18,8 @@ export default async function Home() {
 
   return (
     <>
+    <div className="border-b border-gray-200">
     <PostSwiper />
-    <div className="mt-5">
-    <Link href="/add">
-      <Button primary className="block w-full justify-center font-bold">
-        Đăng tin
-      </Button>
-      </Link>
     </div>
       <div className="mt-5">
         {posts.map((post: any) => {

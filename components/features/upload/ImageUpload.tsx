@@ -51,6 +51,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
                       LeftIcon={AiOutlineEdit}
                       iconClassName="w-4 h-4 text-gray-400"
                       className="!p-1"
+                      label=""
                     />
 
                     <Button
@@ -59,6 +60,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
                       LeftIcon={AiOutlineDelete}
                       iconClassName="text-red-500 w-4 h-4"
                       className="!p-1"
+                      label=""
                     />
                   </div>
                 </div>
@@ -66,6 +68,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, ...props }) => {
             })}
 
             <BaseButton
+              label=""
               LeftIcon={RiImageAddLine}
               onClick={props.onFileUpload}
               className="transition-none relative w-28 h-28 md:w-[130px] col-span-1 border border-dashed border-gray-300 hover:bg-gray-50"

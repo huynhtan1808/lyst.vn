@@ -25,13 +25,14 @@ export default function RightSidebar() {
               username={user.username}
               />
               ) : (
+              <div className="flex flex-col mt-3">
               <Button
               primary
               onClick={loginModal.onOpen}
               className="justify-center"
-              >
-                Đăng nhập
-              </Button>
+              label="Đăng nhập"
+              />
+              </div>
               )}
         </div>
         <Footer />

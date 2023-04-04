@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
   id: string;
   label: string;
-  value: string;
+  value?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   className?: string;

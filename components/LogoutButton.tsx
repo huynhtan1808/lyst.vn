@@ -36,9 +36,9 @@ const LogoutButton = (props: Props) => {
       <Button
       className="w-full text-red-500"
       onClick={logout}
-      >
-        <TextIcon LeftIcon={HiOutlineLogout}>Đăng xuất</TextIcon>
-      </Button>
+      LeftIcon={HiOutlineLogout}
+      label="Đăng xuất"
+      />
     </div>
   );
 };

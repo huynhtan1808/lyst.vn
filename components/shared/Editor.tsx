@@ -76,6 +76,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
                 LeftIcon={AiOutlineBold}
                 onClick={() => editor?.chain().toggleBold().focus().run()}
                 title="Bold"
+                label=""
               />
 
               <CircleButton
@@ -85,6 +86,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
                 LeftIcon={AiOutlineUnderline}
                 onClick={() => editor?.chain().toggleUnderline().focus().run()}
                 title="Underline"
+                label=""
               />
 
               <CircleButton
@@ -94,6 +96,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
                 LeftIcon={AiOutlineItalic}
                 onClick={() => editor?.chain().toggleItalic().focus().run()}
                 title="Italic"
+                label=""
               />
 
               <CircleButton
@@ -103,6 +106,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
                 LeftIcon={AiOutlineUnorderedList}
                 onClick={() => editor?.chain().toggleBulletList().focus().run()}
                 title="Unordered list"
+                label=""
               />
 
               <CircleButton
@@ -112,6 +116,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
                 LeftIcon={AiOutlineOrderedList}
                 onClick={() => editor?.chain().toggleOrderedList().focus().run()}
                 title="Ordered list"
+                label=""
               />
 
               <CircleButton
@@ -121,6 +126,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
                 LeftIcon={AiOutlineStrikethrough}
                 onClick={() => editor?.chain().toggleStrike().focus().run()}
                 title="Strikethrough"
+                label=""
               />
             </div>
         </div>

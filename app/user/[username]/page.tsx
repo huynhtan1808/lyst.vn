@@ -5,7 +5,6 @@ import Section from "@/components/shared/Section";
 import Avatar from '@/components/shared/Avatar';
 import PostCardFeed from '@/components/shared/PostCardFeed';
 
-
 const supabase = supabaseClient();
 
 export async function generateStaticParams() {

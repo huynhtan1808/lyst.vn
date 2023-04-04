@@ -44,12 +44,12 @@ export default function Profile() {
       <div>
       <div className="space-y-2">
         <Link href={`/user/${user.username}`}>
-          <Button className="w-full">
+          <Button label="" className="w-full">
             <TextIcon LeftIcon={AiOutlineUser}>Hồ sơ</TextIcon>
           </Button>
         </Link>
         <Link href="/dashboard">
-          <Button className="w-full">
+          <Button label="" className="w-full">
             <TextIcon LeftIcon={AiOutlineControl}>Bảng điều khiển</TextIcon>
           </Button>
         </Link>
