@@ -81,8 +81,7 @@ export default function Profile() {
       </div>
       </div>
       }
-      
->
+      >
   </Popover>
     </div>
   );

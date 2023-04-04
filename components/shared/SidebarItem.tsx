@@ -9,7 +9,7 @@ interface SidebarItemProps {
   label: string;
   icon: IconType;
   href?: string;
-  onClick?: () => void;
+  onClick?: (() => void) | undefined;
   alert?: boolean;
   className?: string;
 }

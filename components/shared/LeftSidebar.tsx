@@ -10,24 +10,7 @@ import useLoginModal from "@/hooks/useLoginModal";
 import Profile from './Profile';
 import SidebarItem from './SidebarItem';
 import useAddModal from '@/hooks/useAddModal';
-import Button from './Button';
-import TextIcon from './TextIcon';
 
-
-
-
-const items = [
-  {
-    icon: AiOutlineHome,
-    label: 'Trang chủ',
-    href: '/',
-  },
-  {
-    icon: AiOutlineSearch,
-    label: 'Khám phá',
-    href: '/blog',
-  },
-]
 
 function Logo() {
   return (
@@ -75,7 +58,6 @@ function Logo() {
 }
 
 export default function LeftSidebar() {
-
   const { user } = useUser();
 
   const addModal = useAddModal();
@@ -89,6 +71,23 @@ export default function LeftSidebar() {
     addModal.onOpen();
   }, [loginModal, addModal, user]);
 
+  const items = [
+    {
+      icon: AiOutlineHome,
+      label: 'Trang chủ',
+      href: '/',
+    },
+    {
+      icon: AiOutlineSearch,
+      label: 'Khám phá',
+      href: '/blog',
+    },
+    {
+      icon: AiOutlinePlusCircle,
+      label: 'Đăng tin',
+      onClick: onAdd,
+    },
+  ]
 
   return (
     <aside className="col-span-1 h-full pr-0 md:pr-6 border-r border-gray-200">
@@ -100,21 +99,14 @@ export default function LeftSidebar() {
             <nav id="nav">
             {items.map((item) => (
               <SidebarItem
-                key={item.href}
+                key={item.label}
                 href={item.href} 
                 icon={item.icon} 
                 label={item.label}
+                onClick={item.onClick}
                 className="flex flex-row items-center"
               />
             ))}
-             <Button
-              secondary
-              onClick={onAdd}
-              className="text-xl justify-center !rounded-full hover:bg-slate-300 !bg-opacity-20"
-              label=""
-              >
-              <TextIcon className="gap-x-4 px-1 py-2" iconClassName="w-6 h-6" LeftIcon={AiOutlinePlusCircle}>Đăng tin</TextIcon>
-              </Button>
             </nav>
         </div>
         <div className="space-y-2 lg:w-[230px]">
