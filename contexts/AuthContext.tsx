@@ -81,16 +81,16 @@ export const UserContextProvider = (props: Props) => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-
+  
       if (!session) {
         setUser(null);
-
+  
         nookies.destroy(null, accessTokenCookieName);
         nookies.destroy(null, refreshTokenCookieName);
-
+  
         return;
       }
-
+  
       if (event === "SIGNED_OUT") {
         setUser(null);
       } else if (event === "SIGNED_IN") {
@@ -99,26 +99,30 @@ export const UserContextProvider = (props: Props) => {
         .select("*")
         .eq("id", user?.id)
         .single();
-
+  
         setUser(profileUser);
       }
-
+  
       const token = session.access_token;
       const refreshToken = session.refresh_token;
-
+  
       nookies.destroy(null, accessTokenCookieName);
       nookies.set(null, accessTokenCookieName, token, {
         path: "/",
         maxAge: 604800,
       });
-
+  
       nookies.destroy(null, refreshTokenCookieName);
       nookies.set(null, refreshTokenCookieName, refreshToken, {
         path: "/",
         maxAge: 604800,
       });
     });
+    return () => {
+      data.subscription.unsubscribe();
+    };
   }, []);
+  
 
   
   const value = {

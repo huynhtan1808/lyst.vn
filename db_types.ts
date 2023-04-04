@@ -16,25 +16,25 @@ export interface Database {
           title: string
           description: string
           slug: string | null
-          user_id: string | null
+          user_id: string
           images: string | null
         }
         Insert: {
-          id?: string | null
+          id?: string
           created_at?: string | null
           title?: string
           description?: string | null
           slug: string | null
-          user_id?: string | null
+          user_id?: string
           images?: string | null
         }
         Update: {
-          id?: string | null
+          id?: string
           created_at?: string | null
           title?: string
           description?: string | null
           slug?: string | null
-          user_id?: string | null
+          user_id?: string 
           images?: string | null
         }
       },
@@ -64,7 +64,7 @@ export interface Database {
           bio?: string | null
         }
         Update: {
-          id?: string | null
+          id?: string
           authRole?: string | null
           isVerified?: boolean | null
           avatar_url?: string | null

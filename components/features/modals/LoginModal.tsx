@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import Modal from "./Modal";
-
+import Button from "@/components/shared/Button";
 
 
 const LoginModal = () => {
@@ -100,15 +100,15 @@ const googleSignInHandler = async () => {
 
 
   const bodyContent = (
-    <div className="w-full max-w-xs text-center space-y-8 mx-auto">
+    <div className="text-center mx-auto">
       <div className="group transition-all duration-150 space-y-3">
-          <button
-            className="shadow px-3 py-2 relative bg-white text-black font-bold flex items-center justify-center w-full hover:shadow-lg"
+          <Button
+            className="relative border border-gray-200 bg-white hover:bg-gray-200 flex items-center justify-center w-full"
             onClick={googleSignInHandler}
           >
             <FcGoogle className="mr-6"/>
             Đăng nhập với Google
-          </button>  
+          </Button>  
         </div>
       <form
         className="mt-8 space-y-6"
@@ -118,11 +118,11 @@ const googleSignInHandler = async () => {
         }}
       >
         <p className="text-center text-sm text-gray-500">hoặc</p>
-        <div className="-space-y-px rounded-md shadow-sm">
+        <div className="space-y-2 rounded-md">
           {/* email box */}
           <input
             required
-            className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            className="block w-full appearance-none border border-gray-200 px-3 py-3 text-gray-900 placeholder-gray-400 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm rounded-md"
             type="email"
             placeholder="Email"
             value={credentials.email}
@@ -134,7 +134,7 @@ const googleSignInHandler = async () => {
           <input
             required
             type="password"
-            className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            className="block w-full appearance-none border border-gray-200 px-3 py-3 text-gray-900 placeholder-gray-400 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm rounded-md"
             value={credentials.password}
             onChange={(e) =>
               setCredentials({ ...credentials, password: e.target.value })
@@ -167,22 +167,15 @@ const googleSignInHandler = async () => {
   )
 
   const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
-      <hr />
-      <div className="
-      text-neutral-500 text-center mt-4">
-        <p>Chưa có tài khoản?
-          <span 
-            onClick={onToggle} 
-            className="
-              text-neutral-800
-              cursor-pointer 
-              hover:underline
-            "
-            > Đăng ký</span>
-        </p>
-      </div>
-    </div>
+  <div className="text-neutral-500 text-sm text-center">
+    <p>Chưa có tài khoản?
+      <span 
+      onClick={onToggle} 
+      className="text-neutral-800 cursor-pointer hover:underline"> 
+      Đăng ký
+      </span>
+    </p>
+  </div> 
   )
 
   return (
@@ -196,6 +189,7 @@ const googleSignInHandler = async () => {
       body={bodyContent}
       footer={footerContent}
       secondaryAction={googleSignInHandler}
+      className="w-full md:max-w-sm"
     />
   );
 }

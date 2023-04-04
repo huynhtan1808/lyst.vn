@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import classNames from "classnames";
 
 import Button from "@/components/shared/Button";
 
@@ -16,6 +17,7 @@ interface ModalProps {
   disabled?: boolean;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
+  className: string;
 }
 
 const Modal: React.FC<ModalProps> = ({ 
@@ -28,7 +30,8 @@ const Modal: React.FC<ModalProps> = ({
   footer, 
   disabled,
   secondaryAction,
-  secondaryActionLabel
+  secondaryActionLabel,
+  className,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -84,18 +87,11 @@ const Modal: React.FC<ModalProps> = ({
           bg-neutral-800/70
         "
       >
-        <div className="
-          relative 
-          w-full
-          md:w-4/6
-          lg:w-3/6
-          xl:w-2/5
-          my-6
-          mx-auto 
-          h-full 
-          lg:h-auto
-          md:h-auto
-          "
+        <div
+        className={classNames(
+          "relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto",
+          className
+          )}
         >
           {/*content*/}
           <div className={`
@@ -126,7 +122,7 @@ const Modal: React.FC<ModalProps> = ({
               <div className="
                 flex 
                 items-center 
-                p-6
+                p-4
                 rounded-t
                 justify-center
                 relative
@@ -140,18 +136,19 @@ const Modal: React.FC<ModalProps> = ({
                     hover:opacity-70
                     transition
                     absolute
-                    left-9
+                    right-3
+                    text-gray-500
                   "
                   onClick={handleClose}
                 >
-                  <IoMdClose size={18} />
+                  <IoMdClose size={24} />
                 </button>
                 <div className="text-lg font-semibold">
                   {title}
                 </div>
               </div>
               {/*body*/}
-              <div className="relative p-6 flex-auto">
+              <div className="relative p-8 flex-auto">
                 {body}
               </div>
               {/*footer*/}

@@ -3,29 +3,57 @@ import { supabaseClient } from '@/lib/supabase-browser'
 import { notFound } from 'next/navigation'
 import Section from "@/components/shared/Section";
 import Avatar from '@/components/shared/Avatar';
-import UserPosts from '@/app/user/post/page';
+import PostCardFeed from '@/components/shared/PostCardFeed';
+import { UserDetails } from '@/types';
+
+
 
 const supabase = supabaseClient();
 
+
+async function getData ( id : any ) {
+
+  const { data: posts } = await supabase
+  .from('posts')
+  .select('id, slug, title, images, user:users!user_id(*)')
+  .eq('user_id', id)
+
+  return {
+    data: posts
+  };    
+}
 export async function generateStaticParams() {
   const { data: profiles } = await supabase
-  .from('users')
-  .select('username')
+    .from('users')
+    .select('username, id')
 
-  return profiles?.map(({ username }) => username) || []
+  return profiles?.map(({ username, id }) => [username, id]) || []
 }
 
-export default async function UserPage({ params: { username } }: { params: { username: string} }) {
+export default async function UserPage({ 
+  params: { username, id }
+} : { 
+    params: { id : any, username: string } 
+  }) 
+  {
 
-  const { data: profile } = await supabase
-  .from('users')
-  .select("name, username, avatar_url, bio, bannerUrl")
-  .match({ username })
-  .single()
+    const { data: profile } = await supabase
+    .from('users')
+    .select("id, name, username, avatar_url, bio, bannerUrl")
+    .match({ username })
+    .single()
 
-  if (!profile) {
-    notFound()
-  }
+    if (!profile) {
+      notFound()
+    }
+
+    const { data: posts } = await supabase
+  .from('posts')
+  .select('user_id, slug, title, images, user:users!user_id(*)')
+  .eq("user_id", id)
+  
+
+    console.log(id);
 
   return (
     <div className="w-full">
@@ -72,8 +100,9 @@ export default async function UserPage({ params: { username } }: { params: { use
             </div>
           </div>
         </Section>
-        {/* @ts-expect-error Server Component */}
-        <UserPosts />
+
+        <div>
+        </div>
     </div>
   );
 }
