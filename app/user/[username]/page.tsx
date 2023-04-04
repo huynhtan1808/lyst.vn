@@ -38,7 +38,7 @@ export default async function UserPage({
     .eq('user_id', profile.id)
 
   return (
-    <div className="w-full">
+    <div>
         <div className="bg-gray-100 w-full flex items-center">
           <Section className="px-0 overflow-hidden relative mx-auto w-full h-[200px]">
             <div className="relative w-full h-full">
