@@ -152,7 +152,7 @@ const Modal: React.FC<ModalProps> = ({
                 {body}
               </div>
               {/*footer*/}
-              <div className="flex flex-col gap-2 p-8">
+              <div className="flex flex-col gap-4 pb-8 px-8">
                 <div 
                   className="
                     flex
@@ -160,7 +160,6 @@ const Modal: React.FC<ModalProps> = ({
                     items-center 
                     gap-4 
                     w-full
-                    justify-end
                   "
                 >
                   {secondaryAction && secondaryActionLabel && (
@@ -176,6 +175,7 @@ const Modal: React.FC<ModalProps> = ({
                       label={actionLabel} 
                       disabled={disabled} 
                       onClick={handleSubmit}
+                      className="w-full justify-center"
                     />
                 </div>
                 {footer}

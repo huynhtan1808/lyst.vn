@@ -152,15 +152,6 @@ const googleSignInHandler = async () => {
             </a>
           </div>
         </div>
-
-        <div className="group transition-all duration-150 space-y-3">
-          <button
-            className="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-green-500 focus:outline-none"
-            onClick={signInHandler}
-          >
-            Đăng nhập
-          </button>  
-        </div>
       </form>
     </div>
   )
@@ -182,9 +173,9 @@ const googleSignInHandler = async () => {
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       title="Đăng nhập"
-      actionLabel="Continue"
+      actionLabel="Đăng nhập"
       onClose={loginModal.onClose}
-      onSubmit = {signInHandler}
+      onSubmit={signInHandler}
       body={bodyContent}
       footer={footerContent}
       secondaryAction={googleSignInHandler}

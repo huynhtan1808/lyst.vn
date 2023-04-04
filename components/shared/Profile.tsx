@@ -8,8 +8,12 @@ import LogoutButton from "../LogoutButton";
 import Button from "@/components/shared/Button";
 import TextIcon from "@/components/shared/TextIcon";
 import { AiOutlineControl, AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
+import { HiOutlineLogout } from "react-icons/hi";
+
 import Popover from "@/components/shared/Popup";
 import SidebarItem from './SidebarItem';
+import toast from "react-hot-toast";
+
 
 const items = {
     icon: AiOutlineMenu,
@@ -21,6 +25,24 @@ export default function Profile() {
 
   const { user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+
+  const { supabase } = useUser();
+
+  const logout = async () => {
+    const loadingToast = toast.loading("logging out");
+    // logic
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      toast.error(error.message, {
+        id: loadingToast,
+      });
+    } else {
+      toast.success("You are logged.", {
+        id: loadingToast,
+      });
+    }
+  };
 
   const handleClose = () => {
     setIsOpen(false);
@@ -42,7 +64,7 @@ export default function Profile() {
       onClose={handleClose}
       content={
       <div>
-      <div className="space-y-2">
+      <div className="space-y-2 p-2">
         <Link href={`/user/${user.username}`}>
           <Button label="" className="w-full">
             <TextIcon LeftIcon={AiOutlineUser}>Hồ sơ</TextIcon>
@@ -53,7 +75,9 @@ export default function Profile() {
             <TextIcon LeftIcon={AiOutlineControl}>Bảng điều khiển</TextIcon>
           </Button>
         </Link>
-        <LogoutButton />
+        <Button label="" onClick={logout} className="w-full">
+            <TextIcon LeftIcon={HiOutlineLogout}>Đăng xuất</TextIcon>
+        </Button>
       </div>
       </div>
       }
