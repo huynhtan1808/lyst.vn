@@ -56,7 +56,7 @@ export default async function UserPage({
           </Section>
         </div>
         <Section className="bg-gray-50 -mt-12 flex flex-col md:flex-row gap-4 md:items-center justify-between pt-6 w-full">
-          <div className="w-full relative flex flex-col md:flex-row gap-4 mx-5">
+          <div className="relative flex flex-col md:flex-row gap-4 mx-5">
             <div className="border-4 bg-gray-100 border-gray-100 rounded-full w-24 h-24">
               <Avatar
                 src={profile.avatar_url}
