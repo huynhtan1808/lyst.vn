@@ -4,36 +4,22 @@ import { notFound } from 'next/navigation'
 import Section from "@/components/shared/Section";
 import Avatar from '@/components/shared/Avatar';
 import PostCardFeed from '@/components/shared/PostCardFeed';
-import { UserDetails } from '@/types';
-
 
 
 const supabase = supabaseClient();
 
-
-async function getData ( id : any ) {
-
-  const { data: posts } = await supabase
-  .from('posts')
-  .select('id, slug, title, images, user:users!user_id(*)')
-  .eq('user_id', id)
-
-  return {
-    data: posts
-  };    
-}
 export async function generateStaticParams() {
   const { data: profiles } = await supabase
     .from('users')
-    .select('username, id')
+    .select('username')
 
-  return profiles?.map(({ username, id }) => [username, id]) || []
+  return profiles?.map(({ username }) => username) || []
 }
 
 export default async function UserPage({ 
-  params: { username, id }
+  params: { username }
 } : { 
-    params: { id : any, username: string } 
+    params: { username: string } 
   }) 
   {
 
@@ -48,12 +34,9 @@ export default async function UserPage({
     }
 
     const { data: posts } = await supabase
-  .from('posts')
-  .select('user_id, slug, title, images, user:users!user_id(*)')
-  .eq("user_id", id)
-  
-
-    console.log(id);
+    .from('posts')
+    .select('id, slug, title, images, user:users!user_id(*)')
+    .eq('user_id', profile.id)
 
   return (
     <div className="w-full">
@@ -101,8 +84,27 @@ export default async function UserPage({
           </div>
         </Section>
 
-        <div>
-        </div>
+        <div className="mt-5">
+        {posts ? (
+          posts.map((post: any) => {
+            const imageUrls = post.images ? post.images.split(",") : [];
+            return (
+              <PostCardFeed
+                key={post.id}
+                id={post.id}
+                userAvatar={post.user.avatar_url}
+                name={post.user.name}
+                username={post.user.username}
+                images={imageUrls}
+                title={post.title}
+                slug={post.slug}
+              />
+            );
+          })
+        ) : (
+          <p>Chưa có bài đăng nào.</p>
+        )}
+      </div>
     </div>
   );
 }
