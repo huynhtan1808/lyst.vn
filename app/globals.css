@@ -69,6 +69,7 @@ input[type='email'] {
 .banner__overlay {
   background-color: rgba(0, 0, 0, 0.6);
 }
+
 @media screen and (min-width: 768px) {
   .banner__overlay {
     background-image: linear-gradient(

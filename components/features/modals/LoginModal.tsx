@@ -110,13 +110,19 @@ const googleSignInHandler = async () => {
           />
         </div>
       <form
-        className="mt-8 space-y-6"
+        className="mt-4 space-y-4"
         onSubmit={(e) => {
           // to prevent refreshnig when user submits the form.
           e.preventDefault();
         }}
       >
-        <p className="text-center text-sm text-gray-500">hoặc</p>
+        {/* divider */}
+        <div className="flex justify-center items-center relative h-12">
+          <hr className="absolute text-neutral-200 w-full"/>
+          <div className="relative p-4 bg-white text-sm text-neutral-500">
+          <p>Hoặc</p>
+          </div>
+        </div>
         <div className="space-y-2 rounded-md">
           {/* email box */}
           <input
@@ -146,7 +152,7 @@ const googleSignInHandler = async () => {
           <div className="text-sm">
             <a
               href="#"
-              className="font-medium text-gray-500 hover:text-green-600"
+              className="text-neutral-500 hover:text-green-600"
             >
               Quên mật khẩu?
             </a>
@@ -158,11 +164,11 @@ const googleSignInHandler = async () => {
 
   const footerContent = (
   <div className="text-neutral-500 text-sm text-center">
-    <p>Chưa có tài khoản?
+    <p>Chưa có tài khoản?{" "}
       <span 
       onClick={onToggle} 
       className="text-neutral-800 cursor-pointer hover:underline"> 
-      Đăng ký
+       Đăng ký
       </span>
     </p>
   </div> 
