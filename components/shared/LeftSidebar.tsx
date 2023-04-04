@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import Profile from './Profile';
-import SidebarItem from './SidebarItem';
-
 import { AiOutlinePlusCircle, AiOutlineHome, AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 
+import Profile from './Profile';
+import SidebarItem from './SidebarItem';
+import useAddModal from '@/hooks/useAddModal';
+import Button from './Button';
+import TextIcon from './TextIcon';
 
 
 
@@ -21,12 +23,6 @@ const items = [
     icon: AiOutlineSearch,
     label: 'Khám phá',
     href: '/blog',
-  },
-  {
-    icon: AiOutlinePlusCircle,
-    label: 'Đăng tin',
-    href: `/add`,
-    auth: true,
   },
 ]
 
@@ -77,6 +73,9 @@ function Logo() {
 
 export default function LeftSidebar() {
 
+  const addModal = useAddModal();
+
+
   return (
     <aside className="col-span-1 h-full pr-0 md:pr-6 border-r border-gray-200">
       <div className="flex flex-col fixed h-screen items-end justify-between py-4">
@@ -94,6 +93,13 @@ export default function LeftSidebar() {
                 className="flex flex-row items-center"
               />
             ))}
+             <Button
+              secondary
+              onClick={addModal.onOpen}
+              className="text-xl justify-center !rounded-full hover:bg-slate-300 !bg-opacity-20"
+              >
+              <TextIcon className="gap-x-4 px-1 py-2" iconClassName="w-6 h-6" LeftIcon={AiOutlinePlusCircle}>Đăng tin</TextIcon>
+              </Button>
             </nav>
         </div>
         <div className="space-y-2 lg:w-[230px]">

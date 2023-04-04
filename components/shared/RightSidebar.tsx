@@ -1,17 +1,10 @@
 'use client';
 
-import { useCallback, useState } from "react";
-
-import Link from 'next/link';
 import { useUser } from '@/contexts/AuthContext';
 import UserCard from "@/components/shared/UserCard";
 import Button from "@/components/shared/Button"
 import Footer from '@/components/partials/Footer';
-import TextIcon from './TextIcon';
-import { FcGoogle } from "react-icons/fc";
 import useLoginModal from "@/hooks/useLoginModal";
-import SidebarItem from './SidebarItem';
-
 
 
 export default function RightSidebar() {
