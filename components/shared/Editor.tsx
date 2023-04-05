@@ -62,7 +62,7 @@ const Editor = ({ description, setDescription, readOnly, className, placeholder 
       className={classNames(!readOnly && "border border-gray-300", className)}
       >
       <EditorContent 
-      className={classNames("p-2")}
+      className={classNames("p-3")}
       editor={editor}
       />
       
