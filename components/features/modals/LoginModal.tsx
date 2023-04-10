@@ -29,7 +29,7 @@ const LoginModal = () => {
 
   // Login with Social handler
 const googleSignInHandler = async () => {
-  const loadingToast = toast.loading("Signing in");
+  const loadingToast = toast.loading("Đang đăng nhập");
 
   try {
     const {
@@ -52,7 +52,7 @@ const googleSignInHandler = async () => {
   } catch (error) {
     console.log(error);
 
-    toast.error("Error occured", {
+    toast.error("Có lỗi xảy ra, vui lòng thử lại.", {
       id: loadingToast,
     });
   }
@@ -60,7 +60,7 @@ const googleSignInHandler = async () => {
 
   const signInHandler = async () => {
 
-    const loadingToast = toast.loading("Signing in");
+    const loadingToast = toast.loading("Đang đăng nhập...");
   
     try {
       const {
@@ -79,7 +79,7 @@ const googleSignInHandler = async () => {
       }
   
       if (user) {
-        toast.success("Signed in", {
+        toast.success("Đăng nhập thành công", {
           id: loadingToast,
           icon: "👍",
         });
@@ -87,7 +87,7 @@ const googleSignInHandler = async () => {
     } catch (error) {
       console.log(error);
   
-      toast.error("Error occured", {
+      toast.error("Có lỗi xảy ra, vui lòng thử lại.", {
         id: loadingToast,
       });
     }

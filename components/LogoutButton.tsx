@@ -16,7 +16,7 @@ const LogoutButton = (props: Props) => {
   const { supabase } = useUser();
 
   const logout = async () => {
-    const loadingToast = toast.loading("logging out");
+    const loadingToast = toast.loading("Đang đăng xuất...");
     // logic
     const { error } = await supabase.auth.signOut();
 
@@ -25,7 +25,7 @@ const LogoutButton = (props: Props) => {
         id: loadingToast,
       });
     } else {
-      toast.success("You are logged.", {
+      toast.success("Bạn đã đăng xuất.", {
         id: loadingToast,
       });
     }
