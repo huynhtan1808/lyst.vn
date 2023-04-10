@@ -30,10 +30,6 @@ export default function GoogleAnalytics({ GA_TRACKING_ID }: { GA_TRACKING_ID?: s
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
-            gtag('consent', 'default', {
-                'analytics_storage': 'denied'
-            });
             
             gtag('config', '${GA_TRACKING_ID}', {
                 page_path: '${pathname}' + '${searchParams?.toString()}',
