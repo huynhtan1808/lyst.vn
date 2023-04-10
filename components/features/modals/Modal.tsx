@@ -78,7 +78,7 @@ const Modal: React.FC<ModalProps> = ({
           items-center 
           flex 
           overflow-x-hidden 
-          overflow-y-auto 
+          overflow-y-hidden 
           fixed 
           inset-0 
           z-50 
@@ -104,7 +104,7 @@ const Modal: React.FC<ModalProps> = ({
             <div className="
               translate
               h-full
-              lg:h-[90vh]
+              lg:h-[60vh]
               md:h-[90vh]
               border-0 
               rounded-lg 
