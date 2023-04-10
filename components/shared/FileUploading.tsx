@@ -81,7 +81,7 @@ export const FileUploader: React.FC<ExportInterface> = ({
   return (
     <div
       className={classNames(
-        "mt-5 p-4 w-full min-h-[300px] rounded-md border border-dashed border-gray-300 flex flex-col items-center justify-center transition duration-300",
+        "mt-5 p-4 w-full min-h-[200px] rounded-md border border-dashed border-gray-300 flex flex-col items-center justify-center transition duration-300",
         isDragging ? "bg-white/20" : "bg-gray-100"
       )}
       {...dragProps}
