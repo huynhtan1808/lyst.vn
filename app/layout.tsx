@@ -3,6 +3,7 @@ import RightSidebar from '@/components/shared/RightSidebar';
 import ToasterComponents from "../components/ToasterComponents";
 import LoginModal from '@/components/features/modals/LoginModal';
 import AddModal from '@/components/features/modals/AddModal';
+import GoogleAnalytics from '@/components/shared/GoogleAnalytics';
 
 import { UserContextProvider } from '@/contexts/AuthContext';
 import type { Database } from '../db_types';
@@ -66,12 +67,12 @@ export default async function RootLayout({
 }) {
 
   return (
-    <html lang="en">
+    <html lang="vn">
       {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
-      <head />
+      <GoogleAnalytics GA_TRACKING_ID={process.env.GA_TRACKING_ID} />
       <UserContextProvider>
       <body className='max-w-6xl flex flex-col lg:mx-auto'>
       <ToasterComponents />
